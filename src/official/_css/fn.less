@@ -1,0 +1,35 @@
+@import "./variable";
+
+.ellipsis(@w:auto) {
+	width: @w;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal;
+}
+
+.ellipsisLn(@line) {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: @line;
+}
+
+// 水平垂直居中
+.ruiHVCenter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content:center;
+	box-sizing: border-box;
+	height: 100vh;
+	width: 100%;
+}
+
+.setLinkColor () {
+	color: @_colorPrimary;
+	&:hover {
+		color: fade(@_menuBorderColor, 150%);
+	}
+}

@@ -1,0 +1,118 @@
+@import "./variable";
+@import "./fn";
+
+.navbar {
+	padding: 0;
+	height: @_menuHeight;
+	background-color: transparent !important;
+	
+	.collapse {
+		margin-left: -15px;
+		&.show {
+			margin-left: 0;
+		}
+	}
+	
+	.navbar-nav,.navbar-brand {
+		height: @_menuHeight;
+		background-color: @_menuBgColor;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		border-bottom: 5px solid @_menuBorderColor;
+	}
+	
+	.navbar-brand {
+		width: 0;
+		margin: 0;
+		padding-left: 15px;
+	}
+	
+	.nav-item {
+		font-size: @_menuTextSize;
+		flex: 1;
+		text-align: center;
+		height: 100%;
+		
+		&:last-child {
+			border-right: 1px solid @_menuBgColor;
+		}
+		
+		span {
+			font-size: @_menuDescSize;
+		}
+		&-link {
+		}
+		a {
+			color: @_menuTextColor !important;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+		}
+		&:hover {
+			background-color: fade(@_menuBorderColor, 70%);
+		}
+		
+	}
+	
+	&-left {
+		height: calc(~"-5px + "@_menuHeight);
+		margin-bottom: 5px;
+		background-color: @_menuBgColor;
+		flex: 1;
+		margin-right: -15px;
+	}
+	
+	&-right {
+		//height: calc(@_menuHeight - 5px);
+		height: calc(~"-5px + "@_menuHeight);
+		margin-top: 5px;
+		background-color: @_menuBorderColor;
+		flex: 1;
+		margin-left: -15px;
+	}
+	
+	.active {
+		background-color: @_menuActiveColor;
+	}
+}
+
+@media (max-width: @_respWidth) {
+	.navbar {
+		height: auto;
+		background-color: @_menuBgColor!important;
+		
+		&-nav,&-brand {
+			height: auto!important;
+			//min-height: calc(@_menuHeight - 10px)!important;
+			min-height: calc(~"-10px + "@_menuHeight);
+			border-bottom: 0!important;
+			margin-bottom: 10px;
+		}
+		
+		.nav-item {
+			width: 100%;
+			a {
+				display: flex;
+				flex-direction: row!important;
+				justify-content: center;
+				padding: 10px 0;
+				span {
+					padding-left: 5px;
+				}
+			}
+			&-link {
+				width: 200px;
+				margin-left: 50px;
+				display: flex;
+				flex-direction: row;
+				justify-content: left;
+			}
+		}
+		
+		&-left, &-right {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,4 @@
+require('./detail.less')
+
+$(function () {
+});

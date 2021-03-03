@@ -1,0 +1,44 @@
+@import "../_css/common.less";
+
+.news {
+	
+	padding: 30px 0;
+	&-title {
+		font-size: 28px;
+		text-align: center;
+		justify-content: center;
+	}
+	&-date {
+		font-size: 18px;
+		text-align: center;
+		justify-content: center;
+		color: @_colorDesc;
+		margin: 10px 0;
+	}
+	&-content {
+		margin-top: 30px;
+		line-height: 1.8;
+		font-size: 18px;
+		text-align: left;
+		// text-indent: @_textIndent;
+		img {
+			//max-width: calc(~"100% - " @_textIndent);
+			max-width: 100%;
+			margin-left: -@_textIndent
+		}
+	}
+	
+	@media (max-width: @_respWidth) {
+		padding: 10px 0;
+		
+		&-title {
+			font-size: 20px;
+		}
+		&-date {
+			font-size: 14px;
+		}
+		&-content {
+			font-size: 16px;
+		}
+	}
+}

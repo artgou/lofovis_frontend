@@ -1,0 +1,42 @@
+{% extends "../common/base.html" %}
+{% set isGradient = false %}
+
+<test>
+  {% set navIndex = 1 %}
+  {%
+set list = [
+{title: '并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'},
+{title: '并不是详细说明这个新属性的用法，来看看原文中的说明与演示', date: '2020-05-23', link: '/home'}
+]
+%}
+</test>
+
+{% block pageBody %}
+<div class="container news">
+  <ul class="news-list">
+    {% if not list or not list.length %}
+    <li class="row news-item">
+      暂无更多资讯
+    </li>
+    {% else %}
+    {% for item in list %}
+    <li class="row news-item">
+      <a class="col-md-8 news-item-title" href="{{item.link}}">{{item.title}}</a>
+      <span class="col-md-4 news-item-date">{{item.date}}</span>
+    </li>
+    {% endfor %}
+    {% endif %}
+  </ul>
+  <ul class="row pagination pagination-lg justify-content-center news-page">
+    {{pagination | safe}}
+  </ul>
+</div>
+{% endblock %}

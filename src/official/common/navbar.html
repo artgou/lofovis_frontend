@@ -1,0 +1,67 @@
+<test>
+  {% set brandLogo = '/static/v1img/logo_hd.png' %}
+  {% set brandName = '上海取予市场营销有限责任公司'%}
+  {%
+  set navbar = [
+  {title: '首页', desc: 'Home', link: '/home'},
+  {title: '公司资讯', desc: 'Information', link: '/news'},
+  {title: '产品介绍', desc: 'Product', link: '/product'},
+  {title: '服务介绍', desc: 'Service', link: '/service'},
+  {title: '关于我们', desc: 'About', link: '/about'},
+  {title: '联系我们', desc: 'Contact', link: '/about/contact.html'}
+  ]
+  %}
+  {%
+  set pathList = [
+  ['首页', '/'],
+  ['公司资讯', '/'],
+  ['资讯列表', '']
+  ]
+  %}
+</test>
+
+{% if navbar %}
+<div class="page-header {{'is-home' if navIndex === 0 else ''}}">
+  <a href="/about" class="container header-logo">
+    <img src="{{brandLogo | safe}}" alt="{{brandName}}" style="{{brandStyle | safe}}"/>
+  </a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-left"></div>
+    <div class="container-xl">
+      <a class="navbar-brand" href="/">{{brandName}}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="导航切换">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse offcanvas-collapse" id="navbars">
+        <ul class="navbar-nav mr-auto">
+          {% for item in navbar %}
+          <li class="nav-item {{'active' if loop.index0 === navIndex else ''}}">
+            <a href="{{item.link | safe}}">
+              <div class="nav-item-link">
+                <div class="nav-item-title">{{item.title}}</div>
+                <span class="nav-item-desc">{{item.desc}}</span>
+              </div>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-right"></div>
+  </nav>
+  
+  {% if pathList %}
+  <div class="container page-path">
+    <ol class="breadcrumb">
+      {% for item in pathList %}
+      {% if item[1] %}
+      <li class="breadcrumb-item"><a href="{{item[1] | safe}}">{{item[0]}}</a></li>
+      {% else %}
+      <li class="breadcrumb-item active">{{item[0]}}</li>
+      {% endif %}
+      {% endfor %}
+    </ol>
+  </div>
+  {% endif %}
+</div>
+{% endif %}

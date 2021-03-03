@@ -1,0 +1,27 @@
+{% extends "../common/base.html" %}
+<test>
+  {% set navIndex = 0 %}
+  {%
+  set channelList = [
+  {title: '公司资讯', desc: 'Information', icon: 'feed', link: '/news'},
+  {title: '产品介绍', desc: 'Products', icon: 'line-chart', link: '/product'},
+  {title: '服务介绍', desc: 'Service', icon: 'coffee', link: '/service'},
+  {title: '关于我们', desc: 'About us', icon: 'address-card-o', link: '/about'},
+  {title: '联系我们', desc: 'Contact us', icon: 'map-marker', link: '/about/contact'}
+  ]
+  %}
+</test>
+
+{% block pageBody %}
+<div class="container home">
+  <div class="home-place"></div>
+  <div class="home-grids">
+    {% for item in channelList %}
+    <a href="{{item.link | safe}}" class="btn btn-outline-success {{ 'single' if (loop.last and loop.length % 2 == 1) else '' }}">
+      <i class="fa fa-{{item.icon}}"></i>
+      <div>{{item.title}}<i>{{item.desc}}</i></div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

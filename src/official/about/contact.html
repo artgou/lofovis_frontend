@@ -1,0 +1,34 @@
+{% extends "../common/base.html" %}
+{% set isGradient = true %}
+{% set hasClipboard = true %}
+
+<test>
+  {% set navIndex = 5 %}
+  {%
+  set contact = '<p><b>上海取予贸易有限公司</b></p><p>邮箱/E-mail: 000@take-give.com</p><p>地址/Add: 上海市浦东新区航都路18号3幢209室</p><p>Room 209,Building 3,No.18 Hangdu Rd,Pudong District,Shanghai,China</p>'
+  %}
+  {% set wxQrcode = '/static/v1img/wechat_qrcode.jpg' %}
+  {% set mapName = '上海市政府' %}
+</test>
+
+{% block pageBody %}
+<div class="container">
+  <div class="row contact">
+    <div class="col-md-2 contact-item contact-qrcode">
+      <img src="{{wxQrcode | safe}}" alt="{{brandName}}微信公众号"/>
+    </div>
+    <div class="col-md-5 contact-item">
+      <div class="contact-text" id="info" data-clipboard-target="#info">
+        {{contact | safe}}
+      </div>
+    </div>
+    {% if mapName %}
+    <div class="col-md-5 contact-item">
+      <div class="contact-map">
+        <div id="map" data-name="{{mapName}}" style="width: 100%; height: 100%">地图正在加载中...</div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

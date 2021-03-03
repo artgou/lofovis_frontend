@@ -1,0 +1,50 @@
+@import "../_css/common.less";
+
+.news {
+	padding: 0px 35px;
+	font-size: 17px;
+	
+	&-list {
+	}
+	&-item {
+		padding: 12px 0;
+		border-bottom: 1px solid @_colorBolder;
+		
+		&-title {
+			color: @_colorText;
+			padding: 0;
+			.ellipsis();
+		}
+		&-date {
+			padding: 0;
+			text-align: center;
+			color: @_colorText;
+		}
+	}
+	
+	&-page {
+		margin: 30px 0 10px 0;
+		
+		.page-link {
+			font-size: 16px;
+			.setLinkColor();
+		}
+	}
+	
+	@media (max-width: @_respWidth) {
+		.page-num {
+			display: none;
+		}
+		.page-link {
+			padding: 10px 15px;
+		}
+		&-item-title {
+			white-space: unset;
+		}
+		&-item-date {
+			text-align: left;
+			color: @_colorDesc;
+			margin-top: 5px;
+		}
+	}
+}

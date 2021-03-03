@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="{{keywords}}">
+  <meta name="description" content="{{description}}">
+  <title>{{title}}</title>
+  {% if ctx %}
+  <meta name="{{ ctx.config('csrf.header_name') }}" content="{{ ctx[ctx.config('csrf.header_name')] }}">
+  {% endif %}
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" integrity="sha256-Ww++W3rXBfapN8SZitAvc9jw2Xb+Ixt0rvDsmWmQyTo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=fbXf9j0aPH4EwxPBaixZ8Ll2rGwMbFe8"></script>
+  {% block headBlock %}
+  {% endblock %}
+  {{cssInject | safe}}
+  {{headerHTML | safe}}
+</head>
+<body style="{{bodyStyle | safe}}" {{bodyDomProps | safe}}>
+  <div class="{{'body-gradient' if isGradient else ''}}">{DEL_CLOSE_DIV}}</div>
+  {{headerHTML | safe}}

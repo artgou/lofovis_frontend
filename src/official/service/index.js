@@ -1,0 +1,4 @@
+require('./index.less')
+
+$(function () {
+});

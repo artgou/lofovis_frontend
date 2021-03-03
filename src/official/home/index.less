@@ -1,0 +1,59 @@
+@import "../_css/common.less";
+
+.home {
+	display: none;
+	
+	.home-place {
+		height: 50px;
+	}
+	
+	.home-grids {
+		display: none;
+		flex-wrap: wrap;
+		justify-content: start;
+		padding: 10px;
+	}
+	.btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: 16px;
+		flex: calc(~"50% - 10px");
+		margin-right: 20px;
+		margin-top: 20px;
+		height: 130px;
+		color: @_colorPrimary;
+		border-color: @_colorPrimary;
+		
+		.fa {
+			font-size: 50px;
+			margin-bottom: 10px;
+			color: @_menuBorderColor;
+		}
+		i {
+			display: block;
+			font-style: normal;
+			font-size: 12px;
+			color: @_colorSecondary;
+		}
+		
+		&.single,
+		&:nth-child(2n+0) {
+			margin-right: 0;
+		}
+		
+	}
+}
+
+@media (max-width: @_respWidth) {
+	.home {
+		display: block;
+	}
+	.home-grids {
+		display: flex!important;
+	}
+	.home-place {
+		display: none!important;
+	}
+}

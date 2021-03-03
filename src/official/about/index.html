@@ -1,0 +1,22 @@
+{% extends "../common/base.html" %}
+{% set isGradient = true %}
+
+<test>
+  {% set navIndex = 2 %}
+  {% set about = '<p>上海取予贸易有限公司（以下简称“取予”）是由曾长期从事于蒙牛、阳光、南山和Arla foods的营销高管发起，经上海市工商行政、税务和海关部门批准，于2011年在上海浦东新区注册成立的。公司立足于上海作为中国国际航运、贸易和金融中心的优势，以商祖白圭先生战国时所提出的“人弃我取，人取我予”基本商业思想为指导，专注于高品质、高服务、高性价比育婴产品的东西方和上下游贸易。</p><p>当前，取予在兼顾中间贸易的同时，正与业内同行充分合作，深耕上海育婴市场，已经拥有730余家有交母婴店铺销售网络资源，并与爱婴室、蘑菇宝贝、天天加分、荳荳暧房、妈妈好孩子和红孩子、一号店等线下、线上育婴店铺系统保持了较好的合作关系。公司借助于在科技行业的优质资源，率先实现了会员店铺客户网上下单服务，极大地提高了单体店铺采购效率。</p><p>取予始终坚持“良品”、“精业”、“仁义”三大原则，立志于成为一家世界级的优秀贸易商，享受商业乐趣，利益各方。</p>' %}
+  {% set aboutImg = '/static/v1img/aboutImg.png' %}
+</test>
+
+{% block pageBody %}
+<div class="container">
+  <div class="row about">
+    <div class="col-md-8 about-text">
+      {{about | safe}}
+    </div>
+    <div class="col-md-4 about-img">
+      <img src="{{aboutImg | safe}}" alt="{{brandName}}" />
+    </div>
+    <div class="about-bg"></div>
+  </div>
+</div>
+{% endblock %}
