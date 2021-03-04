@@ -1,0 +1,29 @@
+{% extends "../common/base.html" %}
+
+<test>
+  {%
+  set splash = {
+  bgColor: '',
+  img: '/static/imgs/official/splash_brands.png'
+  }
+  %}
+</test>
+
+{% block pageHeader %}
+{% endblock %}
+
+{% block pageBody %}
+<div class="splash" style="background-color: {{splash.bgColor}};">
+  <div class="splash-bd">
+    <img src="{{splash.img}}" />
+  </div>
+  <div class="splash-btns">
+    <div class="splash-enter">Enter</div>
+    <div class="splash-timer">09S</div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block pageFooter %}
+{% endblock %}

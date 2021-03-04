@@ -11,7 +11,7 @@
     "build": "node build/build.js",
     "copy": "node build/copy.js",
     "dist": "npm run build && npm run copy",
-    "fixhot0": "node build/tools.js fixhot",
+    "fixhot": "node build/tools.js fixhot",
     "copy0": "node build/tools.js copy",
     "ftp0": "node build/tools.js ftp",
     "lint": "eslint --ext .js,.vue src",

@@ -1,0 +1,3 @@
+require('./splash.less');
+
+$(function () {});

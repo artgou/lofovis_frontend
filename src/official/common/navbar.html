@@ -23,13 +23,14 @@
 {% if navbar %}
 <div class="page-header {{'is-home' if navIndex === 0 else ''}}">
   <a href="/about" class="container header-logo">
-    <img src="{{brandLogo | safe}}" alt="{{brandName}}" style="{{brandStyle | safe}}"/>
+    <img src="{{brandLogo | safe}}" alt="{{brandName}}" style="{{brandStyle | safe}}" />
   </a>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="navbar-left"></div>
     <div class="container-xl">
       <a class="navbar-brand" href="/">{{brandName}}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="导航切换">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars"
+        aria-expanded="false" aria-label="导航切换">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse offcanvas-collapse" id="navbars">
@@ -49,7 +50,7 @@
     </div>
     <div class="navbar-right"></div>
   </nav>
-  
+
   {% if pathList %}
   <div class="container page-path">
     <ol class="breadcrumb">

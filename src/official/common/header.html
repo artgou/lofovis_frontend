@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-dns-prefetch-control" content="on">
@@ -11,14 +12,19 @@
   <meta name="{{ ctx.config('csrf.header_name') }}" content="{{ ctx[ctx.config('csrf.header_name')] }}">
   {% endif %}
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" integrity="sha256-Ww++W3rXBfapN8SZitAvc9jw2Xb+Ixt0rvDsmWmQyTo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css"
+    integrity="sha256-Ww++W3rXBfapN8SZitAvc9jw2Xb+Ixt0rvDsmWmQyTo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-  <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=fbXf9j0aPH4EwxPBaixZ8Ll2rGwMbFe8"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.4.15/swiper-bundle.min.css"
+    integrity="sha256-+aVbzIDW2LKBUpnFUBzdqo5fP2l8249c4ePpJAlxF7o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_2393995_wzj6a8o4kei.css">
   {% block headBlock %}
   {% endblock %}
   {{cssInject | safe}}
   {{headerHTML | safe}}
 </head>
+
 <body style="{{bodyStyle | safe}}" {{bodyDomProps | safe}}>
-  <div class="{{'body-gradient' if isGradient else ''}}">{DEL_CLOSE_DIV}}</div>
-  {{headerHTML | safe}}
+  <!-- <div class="root">{DEL_CLOSE_DIV}}</div> -->
+  <div class="page">
+    {{headerHTML | safe}}

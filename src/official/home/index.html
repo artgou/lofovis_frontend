@@ -2,26 +2,35 @@
 <test>
   {% set navIndex = 0 %}
   {%
-  set channelList = [
-  {title: '公司资讯', desc: 'Information', icon: 'feed', link: '/news'},
-  {title: '产品介绍', desc: 'Products', icon: 'line-chart', link: '/product'},
-  {title: '服务介绍', desc: 'Service', icon: 'coffee', link: '/service'},
-  {title: '关于我们', desc: 'About us', icon: 'address-card-o', link: '/about'},
-  {title: '联系我们', desc: 'Contact us', icon: 'map-marker', link: '/about/contact'}
+  set swiperList = [
+  {date: '2021-02-15', cate: '新闻', link: '/news', img: '/upload/0/001_1.jpg'},
+  {date: '2021-03-15', cate: '案例', link: '/news', img: '/upload/0/001_2.jpg'},
+  {date: '2021-02-25', cate: '文化', link: '/news', img: '/upload/0/001_3.jpg'},
+  {date: '2021-12-05', cate: '员工', link: '/news', img: '/upload/0/001_4.jpg'}
   ]
   %}
 </test>
 
 {% block pageBody %}
-<div class="container home">
-  <div class="home-place"></div>
-  <div class="home-grids">
-    {% for item in channelList %}
-    <a href="{{item.link | safe}}" class="btn btn-outline-success {{ 'single' if (loop.last and loop.length % 2 == 1) else '' }}">
-      <i class="fa fa-{{item.icon}}"></i>
-      <div>{{item.title}}<i>{{item.desc}}</i></div>
-    </a>
+
+<div class="swiper-container home-swiper">
+  <div class="swiper-wrapper">
+    {% for item in swiperList %}
+    <div class="swiper-slide">
+      <img src="{{item.img | safe}}" />
+      <div class="text">
+        <div class="date">
+          30<br>02<br>2020
+        </div>
+        <div class="cate">
+          新闻
+        </div>
+      </div>
+    </div>
     {% endfor %}
   </div>
+  <div class="swiper-pagination"></div>
 </div>
+
+
 {% endblock %}
