@@ -1,14 +1,40 @@
 {% extends "../common/base.html" %}
+
+{% set hasSwiper = true %}
+
 <test>
   {% set navIndex = 0 %}
   {%
   set swiperList = [
-  {date: '2021-02-15', cate: '新闻', link: '/news', img: '/static/imgs/official/0/001_1.jpg'},
-  {date: '2021-03-15', cate: '案例', link: '/news', img: '/static/imgs/official/0/001_2.jpg'},
-  {date: '2021-02-25', cate: '文化', link: '/news', img: '/static/imgs/official/0/001_3.jpg'},
-  {date: '2021-12-05', cate: '员工', link: '/news', img: '/static/imgs/official/0/001_4.jpg'}
+  {date: '30<br>02<br>2020', cate: '新闻', link: '/news', img: '/static/imgs/official/0/photo.jpg'},
+  {date: '25<br>10<br>2020', cate: '案例', link: '/news', img: '/static/imgs/official/0/001_2.jpg'},
+  {date: '29<br>02<br>2020', cate: '文化', link: '/news', img: '/static/imgs/official/0/photo.jpg'},
+  {date: '10<br>01<br>2020', cate: '员工', link: '/news', img: '/static/imgs/official/0/001_4.jpg'}
   ]
   %}
+  {%
+  set articleList = [
+  {date: '2021/02/12', cate: '新闻', nickname:'Fengbox', title:'董建华:"爱国者治港"是民心所向 香港已到不改革不行的时刻', link: '/news', img:
+  '/static/imgs/official/0/001_1.jpg', isTop:
+  true},
+  {date: '2021/02/12', cate: '案例', nickname:'Lofovis', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/001_2.jpg'}
+  ]
+  %}
+
+  {%
+  set articleList2 = [
+  {date: '2021/02/12', cate: '案例', nickname:'Lofovis', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/001_2.jpg'}
+  ]
+  %}
+
+  {% set photo = {
+  date: '2021/02/12', cate: '案例', nickname:'Fengbox', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/photo.jpg'
+  }
+  %}
+
 </test>
 
 {% block pageBody %}
@@ -20,10 +46,10 @@
       <img src="{{item.img | safe}}" />
       <div class="text">
         <div class="date">
-          30<br>02<br>2020
+          {{item.date | safe}}
         </div>
         <div class="cate">
-          新闻
+          {{item.cate}}
         </div>
       </div>
     </div>
@@ -32,5 +58,87 @@
   <div class="swiper-pagination"></div>
 </div>
 
+<div class="home-article-list">
+  {% for item in articleList %}
+  <div class="article-card">
+    <div class="article-info">
+      <div class="article-icon">
+        <div class="article-cate">
+          {{item.cate | safe}}
+        </div>
+      </div>
+      <div class="article-text">
+        <div class="article-name">
+          <i class="icon icon-user"></i>
+          <b>{{item.nickname | safe}}</b>
+        </div>
+        <div class="article-date">
+          {{item.date | safe}}
+        </div>
+      </div>
+    </div>
+    <div class="article-img">
+      <img src="{{item.img | safe}}" />
+      <div class="article-title">
+        {{item.title | safe}}
+      </div>
+      {% if item.isTop %}
+      <div class="article-top">TOP</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="photo-card">
+  <img src="{{photo.img | safe}}" />
+  <div class="photo-title">
+    {{photo.title | safe}}
+  </div>
+  <div class="photo-icon">
+    <i class="icon icon-image"></i>
+  </div>
+  <div class="photo-text">
+    <div class="photo-name">
+      <i class="icon icon-user"></i>
+      <b>{{photo.nickname | safe}}</b>
+    </div>
+    <div class="photo-date">
+      {{photo.date | safe}}
+    </div>
+  </div>
+</div>
+
+<div class="home-article-list">
+  {% for item in articleList2 %}
+  <div class="article-card">
+    <div class="article-info">
+      <div class="article-icon">
+        <div class="article-cate">
+          {{item.cate | safe}}
+        </div>
+      </div>
+      <div class="article-text">
+        <div class="article-name">
+          <i class="icon icon-user"></i>
+          <b>{{item.nickname | safe}}</b>
+        </div>
+        <div class="article-date">
+          {{item.date | safe}}
+        </div>
+      </div>
+    </div>
+    <div class="article-img">
+      <img src="{{item.img | safe}}" />
+      <div class="article-title">
+        {{item.title | safe}}
+      </div>
+      {% if item.isTop %}
+      <div class="article-top">TOP</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
