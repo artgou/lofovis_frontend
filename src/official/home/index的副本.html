@@ -1,0 +1,238 @@
+{% extends "../common/base.html" %}
+
+{% set hasSwiper = true %}
+
+<test>
+  {% set navIndex = 0 %}
+  {%
+  set swiperList = [
+  {date: '30<br>02<br>2020', cate: '新闻', link: '/news', img: '/static/imgs/official/0/photo.jpg'},
+  {date: '25<br>10<br>2020', cate: '案例', link: '/news', img: '/static/imgs/official/0/photo_1200.jpg'},
+  {date: '29<br>02<br>2020', cate: '文化', link: '/news', img: '/static/imgs/official/0/001_3.jpg'},
+  {date: '10<br>01<br>2020', cate: '员工', link: '/news', img: '/static/imgs/official/0/001_4.jpg'}
+  ]
+  %}
+  {%
+  set imgList = [
+  {height: 330, link: '#', img: '/static/imgs/official/home_brand.jpg'},
+  {height: 320, link: '#', img: '/static/imgs/official/home_service.jpg'},
+  {height: 300, link: '#', img: '/static/imgs/official/home_partner.jpg'}
+  ]
+  %}
+
+  {%
+  set articleList = [
+  {date: '2021/02/12', cate: '新闻', nickname:'Fengbox', title:'董建华:"爱国者治港"是民心所向 香港已到不改革不行的时刻', link: '/news', img:
+  '/static/imgs/official/0/001_1.jpg', isTop:
+  true},
+  {date: '2021/02/12', cate: '案例', nickname:'Lofovis', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/001_2.jpg'}
+  ]
+  %}
+
+  {%
+  set articleList2 = [
+  {date: '2021/02/12', cate: '案例', nickname:'Lofovis', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/001_2.jpg'}
+  ]
+  %}
+
+  {%
+  set articleList3 = [
+  {date: '2021/02/12', cate: '案例', nickname:'Lofovis', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news'}
+  ]
+  %}
+
+  {% set photoList = [
+  {
+  date: '2021/02/12', cate: '案例', nickname:'Fengbox', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/photo.jpg'
+  },
+  {
+  date: '2021/02/12', cate: '案例', nickname:'Fengbox', title: '有科学家要求对新冠病毒起源做独立调查', link: '/news', img:
+  '/static/imgs/official/0/photo.jpg'
+  }
+  ]
+  %}
+
+</test>
+
+{% block pageBody %}
+
+<div class="swiper-container home-swiper">
+  <div class="swiper-wrapper">
+    {% for item in swiperList %}
+    <div class="swiper-slide">
+      <img class="swiper-lazy" data-src="{{item.img | safe}}" data-original="{{item.img | safe}}" />
+      <div class="text">
+        <div class="date">
+          {{item.date | safe}}
+        </div>
+        <div class="cate">
+          {{item.cate}}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<div class="sr home-imgs">
+  {% for item in imgList %}
+  <a href="{{item.link | safe}}" data-scroll-reveal>
+    <img class="lazy" data-original="{{item.img | safe}}" />
+  </a>
+  {% endfor %}
+</div>
+
+<div class="sr home-stats" data-scroll-reveal>
+  <div class="stats-item">
+    <div class="stats-num">
+      <b>8</b>
+      <i>Year</i>
+    </div>
+    <div class="stats-desc">
+      2013年创办<br>8年感恩一路相伴
+    </div>
+  </div>
+  <div class="stats-item">
+    <div class="stats-num">
+      <b>800</b>
+      <i>+</i>
+    </div>
+    <div class="stats-desc">
+      超800个服务项目
+    </div>
+  </div>
+  <div class="stats-item">
+    <div class="stats-num">
+      <b>50</b>
+      <i>+</i>
+    </div>
+    <div class="stats-desc">
+      超50家长期品牌服务企业
+    </div>
+  </div>
+</div>
+
+<div class="home-article-list">
+  {% for item in articleList %}
+  <div class="article-card" data-scroll-reveal>
+    <div class="article-info">
+      <div class="article-icon">
+        <div class="article-cate">
+          {{item.cate | safe}}
+        </div>
+      </div>
+      <div class="article-author">
+        <div class="article-name">
+          <i class="icon icon-user"></i>
+          <b>{{item.nickname | safe}}</b>
+        </div>
+        <div class="article-date">
+          {{item.date | safe}}
+        </div>
+      </div>
+    </div>
+    <div class="article-img">
+      <img src="{{item.img | safe}}" />
+      <div class="article-title">
+        {{item.title | safe}}
+      </div>
+      {% if item.isTop %}
+      <div class="article-top">TOP</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="home-photo-list">
+  {% for item in photoList %}
+  <div class="sr photo-card" data-scroll-reveal>
+    <img src="{{item.img | safe}}" />
+    <div class="photo-title">
+      {{item.title | safe}}
+    </div>
+    <div class="photo-icon">
+      <i class="icon icon-image"></i>
+    </div>
+    <div class="photo-author">
+      <div class="photo-name">
+        <i class="icon icon-user"></i>
+        <b>{{item.nickname | safe}}</b>
+      </div>
+      <div class="photo-date">
+        {{item.date | safe}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="home-article-list">
+  {% for item in articleList3 %}
+  <div class="sr article-card" data-scroll-reveal>
+    <div class="article-info">
+      <div class="article-icon">
+        <div class="article-cate">
+          {{item.cate | safe}}
+        </div>
+      </div>
+      <div class="article-author">
+        <div class="article-name">
+          <i class="icon icon-user"></i>
+          <b>{{item.nickname | safe}}</b>
+        </div>
+        <div class="article-date">
+          {{item.date | safe}}
+        </div>
+      </div>
+    </div>
+    <div class="article-img">
+      <img src="{{item.img | safe}}" />
+      <div class="article-title">
+        {{item.title | safe}}
+      </div>
+      {% if item.isTop %}
+      <div class="article-top">TOP</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="home-article-list">
+  {% for item in articleList2 %}
+  <div class="sr article-card" data-scroll-reveal>
+    <div class="article-info">
+      <div class="article-icon">
+        <div class="article-cate">
+          {{item.cate | safe}}
+        </div>
+      </div>
+      <div class="article-author">
+        <div class="article-name">
+          <i class="icon icon-user"></i>
+          <b>{{item.nickname | safe}}</b>
+        </div>
+        <div class="article-date">
+          {{item.date | safe}}
+        </div>
+      </div>
+    </div>
+    <div class="article-img">
+      <img src="{{item.img | safe}}" />
+      <div class="article-title">
+        {{item.title | safe}}
+      </div>
+      {% if item.isTop %}
+      <div class="article-top">TOP</div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

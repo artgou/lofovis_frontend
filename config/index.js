@@ -3,10 +3,11 @@ var path = require('path');
 
 // flexible参数
 const FLEXIBLE_OPTIONS = {
-  maxWidth: 750, // 页面最大宽度, 0表示宽度用100%自适应
+  maxWidth: 1200, // 页面最大宽度, 0表示宽度用100%自适应
   size: 750, // 美术页面宽度(px)
   remUnit: 75, // 1rem === ?px 网页根元素的字体大小
   ignore: [new RegExp('m1.*')], // 忽略页面，支持正则和字串 ['prod-detail.html', /prod-.*/]
+  flexibleJSUrl: '/static/libs/flexible.js', // flexible.js文件(也可以用别的文件把flexible.js包起来)
 };
 // FTP参数
 const FTP_OPTIONS = {
@@ -25,7 +26,7 @@ const DEFAULT_MODULE = 'm';
 const PROXY_TARGET = 'http://localhost:18003';
 const PROXY_PATHS = ['/libs', '/static', '/upload', '/api/', `/${DEFAULT_MODULE}/`];
 const PROXY_TABLE = {};
-PROXY_PATHS.map(key => {
+PROXY_PATHS.map((key) => {
   PROXY_TABLE[key] = {
     target: PROXY_TARGET,
     // secure: false,       // 如果是https接口，需要配置这个参数
@@ -41,7 +42,7 @@ module.exports = {
   FLEXIBLE_OPTIONS,
   DEFAULT_MODULE,
   BACKEND_PATH,
-  isPx2rem: false,
+  isPx2rem: true,
 
   build: {
     env: require('./prod.env'),
