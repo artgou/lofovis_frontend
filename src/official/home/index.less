@@ -1,83 +1,8 @@
 @import '../_css/common.less';
 @import '../_css/fn.less';
-
-@_colorRed: #e50304;
+@import '../_css/var.less';
 
 .home {
-  background-color: #fff;
-
-  &-swiper {
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    &.swiper-container {
-      width: 100%;
-      height: 500px;
-    }
-
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .swiper-pagination-bullets {
-      right: unset;
-      left: 50px;
-
-      .swiper-pagination-bullet {
-        width: 20px;
-        height: 20px;
-        border: 2px solid #fff;
-        background-color: unset;
-        opacity: 1;
-        margin: 15px 0 !important;
-
-        &-active {
-          background-color: #fff;
-        }
-      }
-    }
-
-    .text {
-      position: absolute;
-      right: 50px;
-
-      color: #fff;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-
-      .date {
-        font-family: 'enfont';
-        text-align: left;
-        line-height: 1.2;
-        font-size: 30px;
-        i {
-          display: block;
-          margin: -5px 0 0 10px;
-          font-size: 12px;
-          text-align: left;
-        }
-      }
-      .cate {
-        margin-top: 10px;
-        background-color: fade(#fff, 10);
-        border: 2px solid #fff;
-        border-radius: 100%;
-        font-size: 14px;
-        width: 50px;
-        height: 50px;
-        line-height: 45px;
-        .ellipsisLn(1);
-      }
-    }
-  }
-
   &-stats {
     display: flex;
     align-items: center;

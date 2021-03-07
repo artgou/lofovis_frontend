@@ -1,5 +1,5 @@
 <test>
-  {% set copyright = '&copy;2011-2020 上海取予'%}
+  {% set copyright = '版权所有。转载请注明出处<br>WWW.LOFOVIS.COM' %}
   {% set icp = '沪公安网备 31010602000261号'%}
 </test>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
@@ -18,9 +18,15 @@
 
 {% if hasFooter %}
 {% block footerBlock %}
-<nav class="container page-footer">
-  <div class="page-footer__copyright">{{copyright | safe}}</div>
-</nav>
+<div class="page-footer">
+  <div class="page-footer-icon">
+    <i class="icon icon-lofo"></i>
+    <i class="icon icon-lofocn"></i>
+  </div>
+  <div class="page-footer-copyright">
+    {{copyright | safe}}
+  </div>
+</div>
 {% endblock %}
 {% endif %}
 

@@ -1,4 +1,4 @@
-require('./index.less');
 require('../common/common');
+require('./download.less');
 
 $(function () {});

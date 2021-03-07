@@ -1,0 +1,37 @@
+{% extends "../common/base.html" %}
+
+{% set hasSwiper = true %}
+{% set hasNavbar = true %}
+{% set hasFooter = true %}
+
+<test>
+  {%
+  set downloadList = [
+  {label: 'Download', title: '品牌设计类案例', desc: '更新于2020年12月（37.06MB）', link: '#'},
+  {label: 'Download', title: '线下营销活动类', desc: '欢迎来电索取', link: ''}
+  ]
+  %}
+</test>
+
+{% block pageBody %}
+<div class="download">
+  <div class="download-logo">
+    <i class="icon icon-lofocn"></i>
+  </div>
+  <div class="download-title">
+    <div class="download-title-cn">LOFO灵风传播<br>经典案例集</div>
+    <div class="download-title-en">Sample Reels</div>
+  </div>
+  <div class="download-item-list">
+    {% for item in downloadList %}
+    <div class="download-item">
+      <div class="download-item-title">{{item.title | safe}}</div>
+      <button type="button" class="btn btn-secondary btn-block" {{'' if item.link else 'disabled' }}>{{item.label |
+        safe}}</button>
+      <div class="download-item-desc">{{item.desc | safe}}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
