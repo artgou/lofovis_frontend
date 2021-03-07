@@ -24,11 +24,11 @@ $(function () {
     delay: 0,
   });
 
-  // var navOffset = $('.article-list').offset().top;
+  var navOffset = $('.page-swiper').height();
   if ($.find('.auto-menu').length > 0) {
     $(window).scroll(function () {
       var scrollPos = $(window).scrollTop();
-      if (scrollPos >= 500) {
+      if (scrollPos >= navOffset) {
         $('.page-menu').fadeIn(500).css('display', 'flex');
       } else {
         $('.page-menu').fadeOut(500);

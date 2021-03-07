@@ -2,13 +2,51 @@
 
 {% set hasSwiper = true %}
 {% set hasNavbar = true %}
+{% set hasFooter = true %}
 
 <test>
+  {% set contact = {
+  qrcode: '/static/imgs/official/0/qrcode.jpg',
+  navmap: '/static/imgs/official/navmap.png',
+  email: '909183@163.com',
+  phone: '010-123456',
+  address: '中国河北·张家口<br>胜利中路凯地广场A座2层'
+  } %}
 
 </test>
 
 {% block pageBody %}
-<div class="about">
+<div class="about contact">
+  <div class="about-logo">
+    <i class="icon icon-lofocn"></i>
+  </div>
+  <div class="about-title">
+    <div class="about-title-cn">联系LOFO</div>
+    <div class="about-title-en">Contact Us</div>
+  </div>
+  <div class="contact-icons">
+    <i class="icon icon-phone"></i>
+    <i class="icon icon-chat"></i>
+    <i class="icon icon-email"></i>
+  </div>
+  <div class="contact-qrcode">
+    <img src="{{contact.qrcode | safe}}" />
+  </div>
+  <div class="contact-info">
+    <div class="contact-email">{{contact.email | safe}}</div>
+    <div class="contact-phone">{{contact.phone | safe}}</div>
+  </div>
 
+  <div class="about-title">
+    <div class="about-title-cn">LOFO的位置</div>
+    <div class="about-title-en">Map navigation</div>
+  </div>
+  <div class="contact-addr">
+    {{contact.address | safe}}
+  </div>
+  <div class="contact-navmap">
+    <img src="{{contact.navmap | safe}}" />
+  </div>
 </div>
+
 {% endblock %}

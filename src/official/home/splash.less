@@ -2,39 +2,37 @@
 
 .splash {
   position: relative;
+  height: 100vh;
+
+  .flexColumn();
 
   &-bd {
-    height: 85vh;
-
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    .flex();
+    padding: 100px 50px 50px 50px;
     img {
       width: 50%;
     }
   }
   &-btns {
-    left: 0;
-    right: 0;
-    position: fixed;
-    bottom: 50px;
     text-align: center;
+    height: 200px;
   }
   &-enter {
-    margin: 50px auto 10px;
-    width: 180px;
-    height: 50px;
-    line-height: 50px;
+    display: block;
+    margin: 10px auto;
+    width: 250px;
+    height: 80px;
+    line-height: 90px;
     border: 2px solid #333;
-    border-radius: 25px;
+    border-radius: 40px;
     text-align: center;
-    font-size: 24px;
-    color: #000000;
+    font-size: 50px;
+    color: #333;
     font-family: 'enfont';
   }
   &-timer {
-    font-size: 20px;
+    font-size: 30px;
     color: #999;
     font-family: serif;
   }

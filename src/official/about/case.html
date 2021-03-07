@@ -14,21 +14,21 @@
 </test>
 
 {% block pageBody %}
-<div class="download">
-  <div class="download-logo">
+<div class="about case">
+  <div class="about-logo">
     <i class="icon icon-lofocn"></i>
   </div>
-  <div class="download-title">
-    <div class="download-title-cn">LOFO灵风传播<br>经典案例集</div>
-    <div class="download-title-en">Sample Reels</div>
+  <div class="about-title">
+    <div class="about-title-cn">LOFO灵风传播<br>经典案例集</div>
+    <div class="about-title-en">Sample Reels</div>
   </div>
-  <div class="download-item-list">
+  <div class="case-item-list">
     {% for item in downloadList %}
-    <div class="download-item">
-      <div class="download-item-title">{{item.title | safe}}</div>
+    <div class="case-item">
+      <div class="case-item-title">{{item.title | safe}}</div>
       <button type="button" class="btn btn-secondary btn-block" {{'' if item.link else 'disabled' }}>{{item.label |
         safe}}</button>
-      <div class="download-item-desc">{{item.desc | safe}}</div>
+      <div class="case-item-desc">{{item.desc | safe}}</div>
     </div>
     {% endfor %}
   </div>

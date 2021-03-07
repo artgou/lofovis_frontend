@@ -2,13 +2,62 @@
 
 {% set hasSwiper = true %}
 {% set hasNavbar = true %}
+{% set hasFooter = true %}
 
 <test>
+  {% set faqList = [
+  {type: 2, text: '与您相识非常荣幸<br>期待与您的携手合作<br>那将是一次极富创意和价值的体验'},
+  {type: 1, text: 'LOFO主要业务方向？'},
+  {type: 2, text: '品牌设计、品牌管理、多媒体互动<br>营销策略、营销活动'},
+  {type: 1, text: '服务过哪些客户？'},
+  {type: 2, img: '/static/imgs/official/partner_color.png'}
+  ] %}
 
+  {% set intro = 'LOFO是一家创意先行的机构，2013年成立以来每一个创意的实现都坚持这一原则。先后<b>为50+以上企业提供长期的项目品牌设计及品牌管理服务</b>。' %}
+
+  {%
+  set wordList = [
+  '服务线上系统完成<br>全程可控可溯',
+  '7*24小时应急反应<br>营销与时间赛跑',
+  '双总监品控<br>直给专业建议',
+  '全IMAC系统<br>保障出稿品质及速度'
+  ]
+  %}
 </test>
 
 {% block pageBody %}
-<div class="about">
+<div class="about aboutus">
+  <div class="about-logo">
+    <i class="icon icon-lofocn"></i>
+  </div>
+  <div class="about-title">
+    <div class="about-title-cn">关于<br>LOFO灵风传播</div>
+    <div class="about-title-en">About Us</div>
+  </div>
+  <div class="faq-list">
+    {% for item in faqList %}
+    <div class="faq-item {{ 'left' if item.type === 1 else 'right' }}">
+      <div class="faq-item-text">
+        {% if item.img %}
+        <img src="{{item.img | safe}}">
+        {% else %}
+        {{item.text | safe}}
+        {% endif %}
+      </div>
+      <div class="faq-item-corner">
+        <div class="corner {{ 'left' if item.type === 1 else 'right' }}"></div>
+      </div>
+      <div class="icon icon-{{ 'user' if item.type === 1 else 'lf' }}"></div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="aboutus-intro">{{intro | safe}}</div>
+  <div class="aboutus-words">
+    {% for item in wordList %}
+    <div class="text">{{item | safe}}</div>
+    {% endfor %}
+  </div>
 
 </div>
 {% endblock %}

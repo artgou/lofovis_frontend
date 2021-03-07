@@ -1,5 +1,133 @@
 @import '../_css/common.less';
 
-.about {
-  height: 2000px;
+.aboutus {
+  width: 80%;
+
+  &-intro {
+    margin: 30px auto;
+    font-size: 30px;
+    line-height: 1.8;
+    b {
+      font-size: 32px;
+    }
+  }
+
+  &-words {
+    div {
+      margin: 50px auto;
+      line-height: 1.5;
+      font-weight: bold;
+      font-size: 35px;
+    }
+  }
+}
+
+.faq {
+  &-list {
+    margin-bottom: 30px;
+  }
+  &-item {
+    position: relative;
+    padding-bottom: 80px;
+
+    &.left {
+      .faq-item-text {
+        border-bottom-left-radius: 0;
+      }
+      .icon {
+        left: 0;
+      }
+    }
+    &.right {
+      .faq-item-text {
+        border-bottom-right-radius: 0;
+      }
+      .icon {
+        right: 0;
+      }
+    }
+
+    .icon {
+      position: absolute;
+      font-size: 50px;
+      bottom: -50px;
+      &.icon-lf {
+        color: @_colorRed;
+        margin-right: -8px;
+      }
+      &.icon-user {
+        font-size: 45px;
+      }
+    }
+
+    &-text {
+      border: 2px solid #666;
+      border-radius: 20px;
+      line-height: 1.6;
+      margin: 50px auto 0 auto;
+      font-size: 32px;
+      padding: 30px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &-corner {
+      position: relative;
+
+      .corner {
+        width: 50px;
+        width: 50px;
+        margin-top: -2px;
+        position: absolute;
+
+        &::before {
+          content: ' ';
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-top: 50px solid #666;
+        }
+
+        &::after {
+          content: ' ';
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-top: 50px solid #fff;
+        }
+
+        &.left {
+          left: 0;
+
+          &::before {
+            border-right: 60px solid transparent;
+            margin-left: -25px;
+          }
+
+          &::after {
+            border-right: 60px solid transparent;
+            margin-left: -23px;
+            margin-top: -3px;
+          }
+        }
+
+        &.right {
+          right: 0;
+
+          &::before {
+            border-left: 60px solid transparent;
+            margin-left: -35px;
+          }
+
+          &::after {
+            border-left: 60px solid transparent;
+            margin-left: -37px;
+            margin-top: -4px;
+          }
+        }
+      }
+    }
+  }
 }

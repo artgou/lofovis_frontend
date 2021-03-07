@@ -1,4 +1,4 @@
 require('../common/common');
-require('./download.less');
+require('./case.less');
 
 $(function () {});

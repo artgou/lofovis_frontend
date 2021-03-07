@@ -39,14 +39,14 @@
 
   {%
   set menuSubList = [
-  {label: '新闻', link: ''},
-  {label: '文化', link: ''},
-  {label: '分享', link: ''},
-  {label: '工作', link: ''},
-  {label: '我们', link: ''},
-  {label: '联系', link: ''},
-  {label: '案例', link: ''},
-  {label: '人才', link: ''}
+  {label: '新闻', link: '/news/index.html'},
+  {label: '文化', link: '/home/splash.html'},
+  {label: '分享', link: '/home/index.html'},
+  {label: '工作', link: '/about/job.html'},
+  {label: '我们', link: '/about/index.html'},
+  {label: '联系', link: '/about/contact.html'},
+  {label: '案例', link: '/about/case.html'},
+  {label: '人才', link: '/about/job.html'}
   ]
   %}
 
@@ -59,15 +59,15 @@
       <i class="icon icon-lofo"></i>
     </div>
     <div class="page-menu-btns">
-      <i class="icon icon-home" id="btnHome"></i>
-      <i class="icon icon-news" id="btnNews"></i>
+      <a href="/home/index.html"><i class="icon icon-home" id="btnHome"></i></a>
+      <a href="javascript:;" id="btnNews"><i class="icon icon-news"></i></a>
     </div>
   </div>
   <div class="page-menu-aside" id="aside">
     <div class="icon icon-arrow_bottom aside-pre" data-dist="-2000"></div>
     <div class="page-menu-items" id="asideItems">
       {% for item in menuSubList %}
-      <div class="page-menu-item">{{ item.label }}</div>
+      <a class="page-menu-item" href="{{item.link | safe}}">{{ item.label }}</a>
       {% endfor %}
     </div>
     <div class="icon icon-arrow_bottom aside-next" data-dist="2000"></div>
@@ -76,7 +76,7 @@
 {% endif %}
 
 {% if swiperList %}
-<div class="swiper-container page-swiper">
+<div class="swiper-container page-swiper {{'' if navIsAutoVisible else 'always-menu'}}">
   <div class="swiper-wrapper">
     {% for item in swiperList %}
     <div class="swiper-slide">

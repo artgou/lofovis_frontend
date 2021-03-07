@@ -54,7 +54,7 @@
 <div class="home-imgs">
   {% for item in imgList %}
   <a href="{{item.link | safe}}" data-scroll-reveal>
-    <img class="lazy" data-original="{{item.img | safe}}" />
+    <img src="{{item.img | safe}}" />
   </a>
   {% endfor %}
 </div>
