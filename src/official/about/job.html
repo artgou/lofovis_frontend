@@ -2,13 +2,75 @@
 
 {% set hasSwiper = true %}
 {% set hasNavbar = true %}
+{% set hasFooter = true %}
 
 <test>
-
+  {% set desc = '有竞争力的薪资和弹性工作制<br>国家法定假日 / 免费午餐供应<br>全IMAC平台 / 轻松的创意氛围' %}
+  {%
+  set downloadList = [
+  {label: 'Download', title: '品牌设计类案例', desc: '更新于2020年12月（37.06MB）', link: '#'},
+  {label: 'Download', title: '线下营销活动类', desc: '欢迎来电索取', link: ''}
+  ]
+  %}
+  {% set fieldsList = [
+  { name: 'position', type: 'select', label: '应聘职位', required: true, placeholder: '点击选择职位', options: [
+  {label: '中', value: 1},
+  {label: '2', value: 2}
+  ]},
+  { name: 'status', type: 'select', label: '目前状态', required: true, placeholder: '点击选择状态'},
+  { name: 'name', type: 'text', label: '姓名', required: true, placeholder: '点击选择状态'},
+  { name: 'contact', type: 'text', label: '联系电话/微信', required: true},
+  { name: 'email', type: 'email', label: 'Email', required: true},
+  { name: 'works', type: 'upload', label: '作品上传', tips: '上传作品压缩包50MB以内，最多上传5个文件。RAR/ZIP/PDF/JPG'}
+  ]
+  %}
 </test>
 
 {% block pageBody %}
-<div class="about">
+<div class="about job">
+  <div class="about-logo">
+    <i class="icon icon-lofocn"></i>
+  </div>
+  <div class="about-title">
+    <div class="about-title-cn">工作机会</div>
+    <div class="about-title-en">Post recruitment</div>
+  </div>
+  <div class="job-desc">
+    {{desc | safe}}
+  </div>
+  <div class="job-title">在线应聘</div>
+  <div class="job-field-list">
+    <form class="job-form">
+      {% for item in fieldsList %}
+      <div class="form-group job-field"">
+        <label>{{item.label | safe}} {{('<i>*</i>' | safe) if item.required else ''}}</label>
+        {% if item.type === 'select' %}
+        <select class=" form-control">
+        <option>请选择{{item.label}}</option>
+        {% for opt in item.options %}
+        <option value="{{opt.value}}">{{opt.label}}</option>
+        {% endfor %}
+        </select>
+        {% elseif item.type === 'upload'%}
+        <div class="upload-list">
+          <div class="upload-item upload-file">
+            <input type="file" id="upload" accept="image/*" multiple />
+            <i class="icon icon-plus"></i>
+          </div>
+        </div>
+        {% else %}
+        <input type="{{item.type}}" class="form-control" id="{{item.name}}" placeholder="请输入{{item.label}}">
+        {% endif %}
+        {% if item.tips %}
+        <small class="form-text text-muted job-item-tips">{{item.tips | safe}}</small>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button type="button" class="btn btn-secondary btn-block lofo-btn" disabled>提 &nbsp; 交</button>
+    </form>
 
+
+  </div>
 </div>
+
 {% endblock %}

@@ -46,6 +46,25 @@ test {
   // max-width: @_respWidth;
 }
 
+.btn.lofo-btn {
+  margin: 10px 0;
+  font-size: 30px;
+  padding: 25px 0 15px 0;
+  font-family: enfont;
+  border-radius: 50px;
+  background-color: #333;
+  border-color: unset !important;
+  &:hover,
+  &:active {
+    background-color: @_colorRed !important;
+    border-color: unset !important;
+  }
+  &:disabled {
+    background-color: #ccc;
+    pointer-events: none;
+  }
+}
+
 // 顶部菜单
 .page-menu {
   width: 100%;
