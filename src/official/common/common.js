@@ -8,8 +8,14 @@ $(function () {
   if (window.Swiper) {
     new Swiper('.swiper-container', {
       direction: 'vertical',
+      // effect: 'fade',
       lazy: {
         loadPrevNext: true,
+      },
+      autoplay: {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
       },
       pagination: {
         el: '.swiper-pagination',
@@ -33,6 +39,8 @@ $(function () {
       } else {
         $('.page-menu').fadeOut(500);
         $('#aside').fadeOut();
+        const newsList = $('#newsList');
+        newsList.removeClass('article-list-offset');
       }
     });
   }

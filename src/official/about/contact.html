@@ -33,8 +33,8 @@
     <img src="{{contact.qrcode | safe}}" />
   </div>
   <div class="contact-info">
-    <div class="contact-email">{{contact.email | safe}}</div>
-    <div class="contact-phone">{{contact.phone | safe}}</div>
+    <div class="contact-email"><a class="link" href="mailto:{{contact.email | safe}}">{{contact.email | safe}}</a></div>
+    <div class="contact-phone"><a class="link" href="tel:{{contact.phone | safe}}">{{contact.phone | safe}}</a></div>
   </div>
 
   <div class="about-title">

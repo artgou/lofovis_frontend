@@ -11,25 +11,32 @@
     .flex();
     padding: 100px 50px 50px 50px;
     img {
-      width: 50%;
+      width: 240px;
     }
   }
   &-btns {
-    text-align: center;
-    height: 300px;
+    .flex(column);
+    margin-bottom: 100px;
   }
   &-enter {
     display: block;
     margin: 10px auto;
     width: 250px;
-    height: 80px;
-    line-height: 90px;
+    height: 75px;
+    line-height: 80px;
     border: 2px solid #333;
     border-radius: 40px;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     color: #333;
     font-family: 'enfont';
+    user-select: none;
+
+    &:hover,
+    &:active {
+      color: #fff;
+      background-color: #000;
+    }
   }
   &-timer {
     font-size: 30px;

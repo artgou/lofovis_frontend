@@ -80,7 +80,8 @@
   <div class="swiper-wrapper">
     {% for item in swiperList %}
     <div class="swiper-slide">
-      <img class="swiper-lazy" data-src="{{item.img | safe}}" data-original="{{item.img | safe}}" />
+      <img class="swiper-lazy" data-src="{{item.img | safe}}" />
+      <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
       <div class="text">
         <div class="date">
           {{item.date | safe}}
