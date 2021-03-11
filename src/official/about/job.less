@@ -1,10 +1,6 @@
 @import '../_css/common.less';
 
 .job {
-  ::-webkit-input-placeholder {
-    color: #ccc;
-    font-weight: 400;
-  }
   &-desc {
     margin: 30px auto;
     font-size: 28px;
@@ -15,57 +11,5 @@
     font-size: 35px;
     color: #444;
     margin-top: 50px;
-  }
-
-  &-form {
-    padding: 30px 50px;
-    text-align: left;
-
-    .form-control {
-      padding: 0;
-      height: 80px;
-      border-radius: 50px;
-      border: 2px solid #666;
-      font-size: 30px;
-      padding: 0 30px;
-      overflow: hidden;
-
-      &::placeholder {
-        color: #aaa;
-      }
-    }
-
-    .lofo-btn {
-      margin-top: 50px;
-    }
-  }
-  &-field {
-    &-list {
-      width: 90%;
-    }
-
-    margin-bottom: 30px !important;
-
-    .text-muted {
-      margin: 10px 0;
-      line-height: 1.5;
-    }
-
-    label {
-      margin-bottom: 10px !important;
-      i {
-        padding-top: -30px;
-      }
-    }
-
-    select {
-      appearance: none;
-      background-color: unset;
-      &:active,
-      &:hover {
-        appearance: none;
-        background-color: unset;
-      }
-    }
   }
 }

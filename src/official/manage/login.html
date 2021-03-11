@@ -1,0 +1,23 @@
+{% extends "../common/base.html" %}
+
+{% set hasNavbar = true %}
+{% set hasFooter = false %}
+{% set isManage = true %}
+{% set isLogined = true %}
+{% set submitLabel = '登 &nbsp; 录' %}
+
+<test>
+  {% set fieldsList = [
+  { name: 'uname', type: 'text', label: '用户名', hasColon: true},
+  { name: 'upass', type: 'password', label: '密码', hasColon: true},
+  { name: 'captcha', type: 'text', label: '验证码', hasColon: true}
+  ]
+  %}
+</test>
+
+{% block pageBody %}
+<div class="manage navbar-gap login">
+  {% include '../common/form.html' %}
+</div>
+
+{% endblock %}

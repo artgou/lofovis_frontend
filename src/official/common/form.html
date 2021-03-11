@@ -1,0 +1,42 @@
+<div class="page-field-list">
+  <form class="page-form">
+    {% for item in fieldsList %}
+    <div class="form-group page-field"">
+      <label>{{item.label | safe}}{{'：' if item.hasColon else ''}} {{('<i>*</i>' | safe) if item.required else ''}}</label>
+      {% if item.type === 'select' %}
+      <select class=" form-control">
+      <option>请选择{{item.label}}</option>
+      {% for opt in item.options %}
+      <option value="{{opt.value}}">{{opt.label}}</option>
+      {% endfor %}
+      </select>
+      {% elseif item.type === 'upload' %}
+      <div class="upload-list">
+        <div class="upload-item upload-file" id="upload">
+          <input type="file" accept="image/*" multiple />
+          <i class="icon icon-plus"></i>
+        </div>
+      </div>
+      {% elseif item.type === 'textarea' %}
+      <textarea autosize contenteditable="true" class="form-control field-{{item.type}}" id="{{item.name}}"
+        placeholder="请输入{{item.label}}"></textarea>
+      {% elseif item.name === 'captcha' %}
+      <div class="field-captcha">
+        <input type="{{item.type}}" class="form-control field-{{item.type}}" id="{{item.name}}"
+          placeholder="请输入{{item.label}}">
+        <div class="el-input-group__append"><embed id="captchSVG" src="/libs/captcha" type="image/svg+xml"
+            pluginspage="http://www.adobe.com/svg/viewer/install/" class="el-tooltip" aria-describedby="el-tooltip-2410"
+            tabindex="0"></div>
+      </div>
+      {% else %}
+      <input type="{{item.type}}" class="form-control field-{{item.type}}" id="{{item.name}}"
+        placeholder="请输入{{item.label}}">
+      {% endif %}
+      {% if item.tips %}
+      <small class="form-text text-muted">{{item.tips | safe}}</small>
+      {% endif %}
+    </div>
+    {% endfor %}
+    <button type="button" class="btn btn-secondary btn-block lofo-btn" id="btnSubmit">{{ submitLabel | safe}}</button>
+  </form>
+</div>

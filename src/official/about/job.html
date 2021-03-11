@@ -3,6 +3,7 @@
 {% set hasSwiper = true %}
 {% set hasNavbar = true %}
 {% set hasFooter = true %}
+{% set submitLabel = '提 &nbsp; 交' %}
 
 <test>
   {% set desc = '有竞争力的薪资和弹性工作制<br>国家法定假日 / 免费午餐供应<br>全IMAC平台 / 轻松的创意氛围' %}
@@ -39,38 +40,7 @@
     {{desc | safe}}
   </div>
   <div class="job-title">在线应聘</div>
-  <div class="job-field-list">
-    <form class="job-form">
-      {% for item in fieldsList %}
-      <div class="form-group job-field"">
-        <label>{{item.label | safe}} {{('<i>*</i>' | safe) if item.required else ''}}</label>
-        {% if item.type === 'select' %}
-        <select class=" form-control">
-        <option>请选择{{item.label}}</option>
-        {% for opt in item.options %}
-        <option value="{{opt.value}}">{{opt.label}}</option>
-        {% endfor %}
-        </select>
-        {% elseif item.type === 'upload'%}
-        <div class="upload-list">
-          <div class="upload-item upload-file" id="upload">
-            <input type="file" accept="image/*" multiple />
-            <i class="icon icon-plus"></i>
-          </div>
-        </div>
-        {% else %}
-        <input type="{{item.type}}" class="form-control" id="{{item.name}}" placeholder="请输入{{item.label}}">
-        {% endif %}
-        {% if item.tips %}
-        <small class="form-text text-muted job-item-tips">{{item.tips | safe}}</small>
-        {% endif %}
-      </div>
-      {% endfor %}
-      <button type="button" class="btn btn-secondary btn-block lofo-btn" id="btnSubmit">提 &nbsp; 交</button>
-    </form>
-
-
-  </div>
+  {% include '../common/form.html' %}
 </div>
 
 {% endblock %}

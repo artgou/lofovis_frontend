@@ -1,0 +1,35 @@
+{% extends "../common/base.html" %}
+
+{% set hasNavbar = true %}
+{% set hasFooter = false %}
+{% set isManage = true %}
+{% set isLogined = true %}
+{% set submitLabel = '发 &nbsp; 布' %}
+
+<test>
+  {% set fieldsList = [
+  { name: 'position', type: 'select', label: '内容属性', required: true,
+  options: [
+  {label: '图集', value: 1},
+  {label: '视频', value: 2}
+  ]},
+  { name: 'status', type: 'select', label: '文章分类', required: true,
+  options: [
+  {label: 'AAAA', value: 1},
+  {label: 'BBBB', value: 2}
+  ]},
+  { name: 'works', type: 'upload', label: '上传：<i>图片或视频（视频1个，图片6张）</i>'},
+
+  { name: 'title', type: 'text', label: '文章标题', required: true},
+  { name: 'contact', type: 'textarea', label: '正文内容（选填）'}
+
+  ]
+  %}
+</test>
+
+{% block pageBody %}
+<div class="manage navbar-gap post">
+  {% include '../common/form.html' %}
+</div>
+
+{% endblock %}

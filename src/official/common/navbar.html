@@ -57,10 +57,19 @@
   <div class="page-menu-base">
     <div class="page-menu-logo">
       <i class="icon icon-lofo"></i>
+      {% if isManage %}
+      <b>快速发布</b>
+      {% endif %}
     </div>
     <div class="page-menu-btn-list">
+      {% if isManage %}
+      {% if isLogined %}
+      <a href="javascript:;" class="page-menu-btn" id="btnExit">登出</a>
+      {% endif %}
+      {% else %}
       <a href="/home/index.html" class="page-menu-btn"><i class="icon icon-home" id="btnHome"></i></a>
       <a href="javascript:;" class="page-menu-btn" id="btnNews"><i class="icon icon-news"></i></a>
+      {% endif %}
     </div>
   </div>
   <div class="page-menu-aside" id="aside">
@@ -75,7 +84,7 @@
 </div>
 {% endif %}
 
-{% if swiperList %}
+{% if hasSwiper and swiperList %}
 <div class="swiper-container page-swiper {{'' if navIsAutoVisible else 'always-menu'}}">
   <div class="swiper-wrapper">
     {% for item in swiperList %}
