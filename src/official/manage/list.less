@@ -19,19 +19,25 @@
 
     &-title {
       flex: 1;
-      background-color: #eee;
-      padding: 0 35px;
-      border-radius: 40px;
-      font-size: 35px;
-      font-weight: 100;
       .flex();
       justify-content: space-between;
+      background-color: #eee;
+      padding: 5px 35px;
+      border-radius: 40px;
+      overflow: hidden;
 
       b {
+        font-size: 35px;
+        font-weight: 400;
+        color: #666;
+        flex: 1;
+
+        .ellipsis();
       }
       i {
         font-size: 20px;
         font-style: normal;
+        color: #999;
       }
     }
     &-btn {
@@ -41,6 +47,7 @@
       border-radius: 100%;
       overflow: hidden;
       margin-left: 20px;
+      cursor: pointer;
 
       &-pc {
         background-color: red;
@@ -48,6 +55,12 @@
       }
       &-del {
         border: 2px solid #333;
+        &:active,
+        &:hover {
+          color: red;
+          border-color: red;
+          background-color: fade(red, 20);
+        }
         .icon {
           font-size: 45px;
         }

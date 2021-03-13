@@ -1,44 +1,168 @@
-@import "../_css/common.less";
+@import '../_css/common.less';
 
-.news {
-	
-	padding: 30px 0;
-	&-title {
-		font-size: 28px;
-		text-align: center;
-		justify-content: center;
-	}
-	&-date {
-		font-size: 18px;
-		text-align: center;
-		justify-content: center;
-		color: @_colorDesc;
-		margin: 10px 0;
-	}
-	&-content {
-		margin-top: 30px;
-		line-height: 1.8;
-		font-size: 18px;
-		text-align: left;
-		// text-indent: @_textIndent;
-		img {
-			//max-width: calc(~"100% - " @_textIndent);
-			max-width: 100%;
-			margin-left: -@_textIndent
-		}
-	}
-	
-	@media (max-width: @_respWidth) {
-		padding: 10px 0;
-		
-		&-title {
-			font-size: 20px;
-		}
-		&-date {
-			font-size: 14px;
-		}
-		&-content {
-			font-size: 16px;
-		}
-	}
+.article {
+  .detail {
+    &-hd {
+    }
+    &-bd {
+      padding: 40px;
+    }
+    &-title {
+      font-size: 42px;
+      line-height: 1.5;
+      text-align: center;
+      margin-top: 20px;
+    }
+    &-icons {
+      .flex();
+      margin: 45px 0;
+
+      li {
+        .flex();
+        margin-left: 50px;
+        color: #aaa;
+
+        .icon {
+          font-size: 40px;
+          margin-right: 5px;
+        }
+        b {
+          font-size: 35px;
+          font-family: enfont;
+          height: 50px;
+        }
+      }
+    }
+    &-content {
+      font-size: 32px;
+      line-height: 1.8;
+      text-indent: 2em;
+      font-weight: 300;
+    }
+  }
+
+  /* 视频播放器 */
+  .player {
+    position: relative;
+    &-content {
+      .flex();
+      position: relative;
+      overflow: hidden;
+    }
+    &-icon {
+      position: absolute;
+      pointer-events: none;
+      .icon {
+        font-size: 70px;
+        background-color: fade(#fff, 20);
+        color: #fff;
+        padding: 10px;
+        border-radius: 100%;
+        border: 8px solid fade(#fff, 50);
+        opacity: 0.75;
+      }
+    }
+    &-bar {
+      .flex();
+      background-color: #f0f0f0;
+      opacity: 0.75;
+      height: 50px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      @item_gap: 10px;
+
+      .progress-bar {
+        background-color: #dc3545;
+      }
+
+      .icon {
+        font-size: 30px;
+        padding: @item_gap;
+        cursor: pointer;
+        &.icon-fullscreen {
+          position: relative;
+        }
+        &.icon-fullscreen {
+          margin-right: 10px;
+        }
+      }
+
+      .timebar {
+        .flex();
+        flex: 1;
+        font-size: 20px;
+
+        > span {
+          width: 90px;
+          user-select: none;
+        }
+
+        .progress {
+          flex: 1;
+          height: 30px;
+          margin: 0 @item_gap;
+          border-radius: 4px;
+          background-color: #ccc;
+        }
+      }
+
+      .icon-volume {
+        position: relative;
+      }
+
+      .volumebar {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    .volumebar {
+      display: none;
+      position: absolute;
+      top: -100px;
+      left: 13px;
+      width: 26px;
+      height: 100px;
+      background: #f1f2f2;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -7px;
+        left: 5px;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid #f1f2f2;
+      }
+
+      .volumewrap {
+        background: #a2a7aa;
+        width: 8px;
+        height: 80px;
+        position: absolute;
+        bottom: 10px;
+        left: 9px;
+        border-radius: 4px;
+      }
+
+      .progress {
+        background: none;
+      }
+
+      .progress-bar {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        border-radius: 4px;
+      }
+    }
+  }
 }

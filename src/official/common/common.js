@@ -64,6 +64,10 @@ $(function () {
     }
   });
 
+  $('#btnExit').click(function () {
+    window.location.href = '../home/index.html';
+  });
+
   $('textarea').on('input', function () {
     this.style.height = 'auto';
     this.style.height = this.scrollHeight + 'px';

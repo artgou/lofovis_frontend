@@ -7,15 +7,15 @@
 
 <test>
   {% set newsList = [
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: true},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: true},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false}
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: true},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: true},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false}
   ]
   %}
 </test>
@@ -27,7 +27,7 @@
     {% for item in newsList %}
     <div class="item">
       <div class="item-title">
-        <b>分类 | 文章标题</b>
+        <b>{{item.title | safe}}</b>
         <i>2021-02-20</i>
       </div>
       {% if item.is_pc %}

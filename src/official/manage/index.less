@@ -1,0 +1,29 @@
+@import '../_css/common.less';
+
+.index {
+  &-bd {
+    .flex();
+
+    a {
+      .flex();
+
+      width: 160px;
+      height: 160px;
+      border-radius: 100%;
+      overflow: hidden;
+      margin: 150px 50px;
+      background-color: #000;
+      color: #fff;
+
+      &:active,
+      &:hover {
+        background-color: red;
+        color: #fff;
+      }
+
+      .icon {
+        font-size: 100px;
+      }
+    }
+  }
+}
