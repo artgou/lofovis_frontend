@@ -1,5 +1,5 @@
-require('../common/common');
-const { initUploader, getFileList } = require('../common/upload');
+require('../_js/common');
+const { initUploader, getFileList } = require('../_js/upload');
 require('./job.less');
 
 $(function () {

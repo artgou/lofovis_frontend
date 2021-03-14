@@ -1,0 +1,59 @@
+/* 音频播放器 */
+.aplayer {
+  audio::-webkit-media-controls-panel {
+    display: none !important;
+  }
+
+  audio {
+    display: none !important;
+  }
+
+  @item_gap: 15px;
+
+  .flex();
+
+  background-color: #fff;
+  height: 80px;
+  width: 80%;
+  border-radius: 10px;
+  border: 2px solid #666;
+  padding: @item_gap;
+  margin: 50px auto;
+
+  .progress-bar {
+    background-color: #dc3545;
+    transition: unset;
+  }
+
+  .icon {
+    font-size: 40px;
+    padding: @item_gap;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 30px;
+    font-family: enfont;
+    user-select: none;
+    padding: 0 @item_gap - 10px;
+    height: 35px;
+    color: #999;
+  }
+
+  .timebar {
+    .flex();
+    flex: 1;
+
+    .progress {
+      flex: 1;
+      height: 10px;
+      margin: 0 @item_gap;
+      border-radius: 6px;
+      background-color: #ccc;
+    }
+  }
+
+  .icon-volume {
+    position: relative;
+  }
+}

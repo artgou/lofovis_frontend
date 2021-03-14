@@ -1,4 +1,4 @@
 require('./index.less');
-require('../common/common');
+require('../_js/common');
 
 $(function () {});
