@@ -13,31 +13,67 @@
   '并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示',
   views: 1230,
   favs: 25,
-  author: 'Fengbox'
+  author: 'Fengbox',
+  video: 'http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v'
   }
   %}
 </test>
 
 {% block pageBody %}
-<div class="navbar-gap article detail detail-text">
-  <div class="detail-bd">
+<div class="navbar-gap article detail detail-video">
+  <div class="detail-hd">
+    <div class="vplayer">
+      <div class="vplayer-content">
+        <div class="vplayer-content-bg"></div>
+        <video class="video" title="{{atricle.title}}" muted="true" autoplay playsinline webkit-playsinline
+          x5-video-player-type="h5" x5-video-orientation="landscape" controlslist="nodownload" disablePictureInPicture>
+          <source src="{{atricle.video | safe}}" type="video/mp4">
+          </source>
+          当前浏览器不支持直接播放视频
+        </video>
+        <div class="vplayer-icon">
+          <i class="play-pause icon icon-play"></i>
+        </div>
+        <div class="vplayer-bar">
+          <div class="play-pause icon icon-play"></div>
+          <div class="timebar">
+            <span class="timebar-current">00:00:00</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+              </div>
+            </div>
+            <span class="timebar-total">00:00:00</span>
+          </div>
+          <div class="icon icon-volume">
+            <div class="volumebar">
+              <div class="volumewrap">
+                <div class="progress">
+                  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="icon icon-fullscreen"></div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+  <div class="detail-bd">
     <h1 class="detail-title">
       {{atricle.title | safe}}
     </h1>
-
     <ul class="detail-icons">
       <li><i class="icon icon-view"></i> <b>{{atricle.views}}</b></li>
       <li><i class="icon icon-fav"></i> <b>{{atricle.favs}}</b></li>
       <li><i class="icon icon-user"></i> <b>{{atricle.author}}</b></li>
     </ul>
-
     {% if atricle.content %}
     <div class="detail-content">
       {{atricle.content | safe}}
     </div>
     {% endif %}
-
   </div>
 </div>
 {% endblock %}

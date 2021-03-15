@@ -8,34 +8,6 @@
   ]
   %}
 
-  {%
-  set menuSubList = [
-  {label: '新闻', link: ''},
-  {label: '文化', link: ''},
-  {label: '分享', link: ''},
-  {label: '工作', link: ''},
-  {label: '我们', link: ''},
-  {label: '联系', link: ''},
-
-  {label: '分享', link: ''},
-  {label: '工作', link: ''},
-  {label: '我们', link: ''},
-  {label: '联系', link: ''},
-  {label: '分享', link: ''},
-  {label: '工作', link: ''},
-  {label: '我们', link: ''},
-  {label: '联系', link: ''},
-  {label: '我们', link: ''},
-  {label: '联系', link: ''},
-  {label: '分享', link: ''},
-  {label: '工作', link: ''},
-  {label: '我们', link: ''},
-  {label: '联系', link: ''},
-
-  {label: '案例', link: ''},
-  {label: '人才', link: ''}
-  ]
-  %}
 
   {%
   set menuSubList = [
@@ -84,7 +56,7 @@
 </div>
 {% endif %}
 
-{% if hasSwiper and swiperList %}
+{% if hasSwiper and hasNewsSwiper and swiperList %}
 <div class="swiper-container page-swiper {{'' if navIsAutoVisible else 'always-menu'}}">
   <div class="swiper-wrapper">
     {% for item in swiperList %}

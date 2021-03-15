@@ -12,6 +12,13 @@ $(function () {
   var videoContent = $('.vplayer-content');
   var videoContentBg = $('.vplayer-content-bg');
   var video = playerVideo[0];
+  // 默认静音自动播放
+  function autoPlayByMuted() {
+    setMute(true);
+    doPlay();
+    showPlayerBar(false);
+  }
+  autoPlayByMuted();
   volumeControl(null, 60);
   videoContentBg.on('click', function () {
     setPlayInline(true);
@@ -29,22 +36,13 @@ $(function () {
     })
     .hover(
       function () {
-        playerBar.stop().animate(
-          {
-            bottom: 0,
-          },
-          500
-        );
+        showPlayerBar(true);
       },
       function () {
-        playerBar.stop().animate(
-          {
-            bottom: -60,
-          },
-          500
-        );
+        showPlayerBar(false);
       }
     );
+
   $(document).click(function () {
     $('.volumebar').hide();
   });
@@ -111,13 +109,7 @@ $(function () {
   iconVolume.on('click', function (e) {
     e = e || window.event;
     if (isMobile) {
-      if (iconVolume.hasClass('icon-volume')) {
-        video.muted = true;
-        iconVolume.removeClass('icon-volume').addClass('icon-volume-off');
-      } else {
-        video.muted = false;
-        iconVolume.removeClass('icon-volume-off').addClass('icon-volume');
-      }
+      setMute(iconVolume.hasClass('icon-volume'));
     } else {
       $('.volumebar').toggle();
     }
@@ -125,7 +117,6 @@ $(function () {
   });
   $('.volumebar').on('click mousewheel DOMMouseScroll', function (e) {
     e = e || window.event;
-    console.log(e);
     volumeControl(e);
     e.stopPropagation();
     return false;
@@ -168,6 +159,7 @@ $(function () {
         positions = volumeProgBar.offset().top - e.pageY;
         percentage = (100 * (positions + volumeProgBar.height())) / $('.volumebar .volumewrap').height();
       }
+      setMute(false);
     }
     if (percentage >= 100) {
       percentage = 100;
@@ -176,6 +168,28 @@ $(function () {
     video.volume = percentage / 100;
   }
 
+  // 显示控制条
+  function showPlayerBar(visible) {
+    playerBar.stop().animate(
+      {
+        bottom: visible ? 0 : -80,
+      },
+      500
+    );
+  }
+
+  // 设置静音
+  function setMute(val) {
+    if (val) {
+      video.muted = true;
+      iconVolume.removeClass('icon-volume').addClass('icon-volume-off');
+    } else {
+      video.muted = false;
+      iconVolume.removeClass('icon-volume-off').addClass('icon-volume');
+    }
+  }
+
+  // 设为页内播放
   function setPlayInline(isInline) {
     if (isInline) {
       video.setAttribute('playsinline', 'true');
