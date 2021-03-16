@@ -7,7 +7,7 @@
 
 <test>
   {%
-  set atricle = {
+  set article = {
   title: '并不是详细说明这个新这里原文中的说明与演示',
   content:
   '并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示',
@@ -15,7 +15,14 @@
   favs: 25,
   author: 'Fengbox',
   video0: 'http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v',
-  audio: 'https://www.jq22.com/demo/jqueryaudio201903252328/jq22.mp3'
+  audio: 'https://www.jq22.com/demo/jqueryaudio201903252328/jq22.mp3',
+  photoList: [
+  '/static/imgs/official/0/photo.jpg',
+  '/static/imgs/official/0/photo_1200.jpg',
+  '/static/imgs/official/0/001_3.jpg',
+  '/static/imgs/official/0/001_4.jpg'
+  ]
+
   }
   %}
 </test>
@@ -23,10 +30,59 @@
 {% block pageBody %}
 <div class="navbar-gap article detail detail-image">
 
-  <div class="swiper-container detail-swiper">
+  <div class="swiper-container detail-swiper swiper-outline">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <div style="width: 100%; height: 100vh; background-color: rgb(47, 139, 182);"></div>
+        {% if photoList %}
+        <!-- 相册 -->
+        <div class="swiper-container detail-swiper swiper-inline">
+          <div class="swiper-wrapper">
+            {% for img in article.photoList %}
+            <div class="swiper-slide">
+              <img src="{{img | safe}}">
+            </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="panel">
+            <i class="icon icon-image panel-left"></i>
+            <div class="panel-center">
+              <i class="icon icon-arrow_bottom"></i>
+              <b>文章标题</b>
+            </div>
+            <ul class="panel-right">
+              <li>
+                <i class="icon icon-view"></i>
+                <b>{{article.views}}</b>
+              </li>
+              <li>
+                <i class="icon icon-fav"></i>
+                <b>{{article.favs}}</b>
+              </li>
+              <li>
+                <i class="icon icon-user"></i>
+                <b>{{article.author}}</b>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        {% endif %}
+        {% elif photoList %}
+        <!-- 视频 -->
+
+        <div class="vplayer-content-bg"></div>
+        <video class="video" title="{{article.title}}" muted="true" autoplay playsinline webkit-playsinline
+          x5-video-player-type="h5" x5-video-orientation="landscape" controlslist="nodownload" disablePictureInPicture>
+          <source src="{{article.video | safe}}" type="video/mp4">
+          </source>
+          当前浏览器不支持直接播放视频
+        </video>
+        <div class="vplayer-icon">
+          <i class="play-pause icon icon-play"></i>
+        </div>
+
+        {% endif %}
       </div>
       <div class="swiper-slide">
         <div class="swiper-scroll">
@@ -42,16 +98,16 @@
           </div>
           <div class="detail-bd">
             <h1 class="detail-title">
-              {{atricle.title | safe}}
+              {{article.title | safe}}
             </h1>
             <ul class="detail-icons">
-              <li><i class="icon icon-view"></i> <b>{{atricle.views}}</b></li>
-              <li><i class="icon icon-fav"></i> <b>{{atricle.favs}}</b></li>
-              <li><i class="icon icon-user"></i> <b>{{atricle.author}}</b></li>
+              <li><i class="icon icon-view"></i> <b>{{article.views}}</b></li>
+              <li><i class="icon icon-fav"></i> <b>{{article.favs}}</b></li>
+              <li><i class="icon icon-user"></i> <b>{{article.author}}</b></li>
             </ul>
-            {% if atricle.content %}
+            {% if article.content %}
             <div class="detail-content">
-              {{atricle.content | safe}}
+              {{article.content | safe}}
             </div>
             {% endif %}
           </div>

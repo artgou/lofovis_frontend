@@ -49,3 +49,23 @@
 .flexColumn () {
   .flex(column);
 }
+
+.swiperPageBullets() {
+  .swiper-pagination-bullets {
+    right: unset;
+    left: 50px;
+
+    .swiper-pagination-bullet {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #fff;
+      background-color: unset;
+      opacity: 1;
+      margin: 15px 0 !important;
+
+      &-active {
+        background-color: #fff;
+      }
+    }
+  }
+}

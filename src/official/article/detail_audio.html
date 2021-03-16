@@ -7,7 +7,7 @@
 
 <test>
   {%
-  set atricle = {
+  set article = {
   title: '并不是详细说明这个新这里原文中的说明与演示',
   content:
   '并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示',
@@ -26,13 +26,13 @@
   </div>
   <div class="detail-bd">
     <h1 class="detail-title">
-      {{atricle.title | safe}}
+      {{article.title | safe}}
     </h1>
     <div class="detail-category">
-      {{atricle.category | safe}}
+      {{article.category | safe}}
     </div>
     <div class="aplayer">
-      <audio src="{{atricle.audio | safe}}" controls autoplay style="display: none;">
+      <audio src="{{article.audio | safe}}" controls autoplay style="display: none;">
         当前浏览器不支持直接播放音频
       </audio>
       <div class="play-pause icon icon-play"></div>
@@ -48,16 +48,16 @@
       </div>
     </div>
 
-    {% if atricle.content %}
+    {% if article.content %}
     <div class="detail-content">
-      {{atricle.content | safe}}
+      {{article.content | safe}}
     </div>
     {% endif %}
 
     <ul class="detail-icons">
-      <li><i class="icon icon-view"></i> <b>{{atricle.views}}</b></li>
-      <li><i class="icon icon-fav"></i> <b>{{atricle.favs}}</b></li>
-      <li><i class="icon icon-user"></i> <b>{{atricle.author}}</b></li>
+      <li><i class="icon icon-view"></i> <b>{{article.views}}</b></li>
+      <li><i class="icon icon-fav"></i> <b>{{article.favs}}</b></li>
+      <li><i class="icon icon-user"></i> <b>{{article.author}}</b></li>
     </ul>
   </div>
 </div>
