@@ -65,7 +65,7 @@ $(function () {
   });
 
   $('#btnExit').click(function () {
-    window.location.href = '../home/index.html';
+    window.location.href = '/';
   });
 
   $('textarea').on('input', function () {

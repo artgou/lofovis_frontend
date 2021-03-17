@@ -6,25 +6,17 @@
 {% set isLogined = true %}
 
 <test>
-  {% set newsList = [
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: true},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: true},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false},
-  {id: 1, category: '文化', title: '文章标题', date: '2021-02-12', is_pc: false}
-  ]
-  %}
+  {% set urls = {
+  post: 'post.html',
+  list: 'list.html'
+  }%}
 </test>
 
 {% block pageBody %}
 <div class="manage navbar-gap index">
   <div class="index-bd">
-    <a href="post.html"><i class="icon icon-plus"></i></a>
-    <a href="list.html"><i class="icon icon-manage"></i></a>
+    <a href="{{urls.post | safe}}"><i class="icon icon-plus"></i></a>
+    <a href="{{urls.list | safe}}"><i class="icon icon-manage"></i></a>
   </div>
 </div>
 </div>

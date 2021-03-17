@@ -80,7 +80,7 @@
 <div class="article-list" id="newsList">
   {% for item in articleList %}
   {% if item.isPhoto %}
-  <div class="{{'video' if item.isVideo else 'photo'}}-card" data-scroll-reveal>
+  <a href="{{item.link | safe}}" class="{{'video' if item.isVideo else 'photo'}}-card" data-scroll-reveal>
     <img src="{{item.img | safe}}" />
     <div class="photo-title">
       {{item.title | safe}}
@@ -97,9 +97,9 @@
         {{item.date | safe}}
       </div>
     </div>
-  </div>
+  </a>
   {% else %}
-  <div class="article-card" data-scroll-reveal>
+  <a href="{{item.link | safe}}" class="article-card" data-scroll-reveal>
     <div class="article-info">
       <div class="article-info-icon">
         <div class="article-info-cate">
@@ -136,7 +136,7 @@
     {% if item.top %}
     <div class="article-top">TOP</div>
     {% endif %}
-  </div>
+  </a>
   {% endif %}
   {% endfor %}
 </div>
