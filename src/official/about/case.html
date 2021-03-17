@@ -25,11 +25,10 @@
   </div>
   <div class="case-item-list">
     {% for item in downloadList %}
+    {% set disalbed = '' if item.link else 'disabled' %}
     <div class="case-item">
       <div class="case-item-title">{{item.title | safe}}</div>
-      <button type="button" class="btn btn-secondary btn-block lofo-btn" {{'' if item.link else 'disabled'
-        }}>{{item.label |
-        safe}}</button>
+      <button type="button" class="btn btn-secondary btn-block lofo-btn" {{disalbed}}>{{item.label | safe}}</button>
       <div class="case-item-desc">{{item.desc | safe}}</div>
     </div>
     {% endfor %}
