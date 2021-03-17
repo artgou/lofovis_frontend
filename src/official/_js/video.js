@@ -1,8 +1,9 @@
-$(function () {
-  var isMobile = navigator.userAgent.match(/mobile/i);
+export function initVideo() {
+  var isMobile = !!navigator.userAgent.match(/mobile/i);
   var playerVideo = $('.vplayer video');
   var playerIcon = $('.vplayer-icon');
   var playerBar = $('.vplayer .vplayer-bar');
+  var playerBarVisible = false;
   var playPause = $('.vplayer .play-pause');
   var timeCurrent = $('.vplayer .timebar-current');
   var timeTotal = $('.vplayer .timebar-total');
@@ -28,20 +29,28 @@ $(function () {
     setPlayInline(true);
     checkPlayControl();
   });
-  videoContent
-    .on('click', function (e) {
-      if (e.target === video) {
+  videoContent.on('click', function (e) {
+    if (e.target === video || e.target === videoContent[0]) {
+      if (video.isPlaying) {
+        if (playerBarVisible) {
+          playerIcon.fadeOut();
+        } else {
+          playerIcon.fadeIn();
+        }
+        showPlayerBar(!playerBarVisible);
+      } else {
         checkPlayControl();
       }
-    })
-    .hover(
-      function () {
-        showPlayerBar(true);
-      },
-      function () {
-        showPlayerBar(false);
-      }
-    );
+    }
+  });
+  // .hover(
+  //   function () {
+  //     showPlayerBar(true);
+  //   },
+  //   function () {
+  //     showPlayerBar(false);
+  //   }
+  // );
 
   $(document).click(function () {
     $('.volumebar').hide();
@@ -54,9 +63,11 @@ $(function () {
     progressBar.css('width', (100 * video.currentTime) / video.duration + '%');
   });
   playerVideo.on('play', function () {
+    video.isPlaying = true;
     doPlay();
   });
   playerVideo.on('pause', function () {
+    video.isPlaying = false;
     doPause();
   });
   playerVideo.on('seeking', function () {});
@@ -66,7 +77,6 @@ $(function () {
   playerVideo.on('waiting', function () {});
   // 当视频在已因缓冲而暂停或停止后已就绪时触发
   playerVideo.on('playing', function () {});
-
   playerVideo.on('ended', function () {
     playerIcon.fadeIn();
     playPause.removeClass('icon-play').removeClass('icon-pause').addClass('icon-replay').fadeIn();
@@ -81,7 +91,12 @@ $(function () {
   $('.icon-fullscreen').on('click', function () {
     if (isMobile) {
       setPlayInline(false);
-      doPlay();
+      if (video.isPlaying) {
+        video.pause();
+        setTimeout(doPlay, 50);
+      } else {
+        doPlay();
+      }
       return;
     }
     if ($(this).hasClass('cancleScreen')) {
@@ -129,7 +144,7 @@ $(function () {
     updateTimeBar(e.pageX);
   });
   //$('.vplayer-content').on('mousewheel DOMMouseScroll',function(e){
-  //	volumeControl(e);
+  //  volumeControl(e);
   //});
   var updateTimeBar = function (x) {
     var maxtimeTotal = video.duration; //Video
@@ -170,11 +185,12 @@ $(function () {
 
   // 显示控制条
   function showPlayerBar(visible) {
+    playerBarVisible = visible;
     playerBar.stop().animate(
       {
         bottom: visible ? 0 : -80,
       },
-      500
+      200
     );
   }
 
@@ -209,6 +225,7 @@ $(function () {
   }
 
   function doPlay() {
+    video.isPlaying = true;
     video.play();
     videoContentBg.hide();
     playerVideo.show();
@@ -217,35 +234,42 @@ $(function () {
   }
 
   function doPause() {
+    video.isPlaying = false;
     video.pause();
     videoContentBg.show();
     playerVideo.hide();
     playerIcon.fadeIn();
     playPause.removeClass('icon-replay').removeClass('icon-pause').addClass('icon-play').fadeIn();
   }
-});
 
-//秒转时间
-function formatSeconds(value) {
-  value = parseInt(value);
-  var time;
-  if (value > -1) {
-    hour = Math.floor(value / 3600);
-    min = Math.floor(value / 60) % 60;
-    sec = value % 60;
-    day = parseInt(hour / 24);
-    if (day > 0) {
-      hour = hour - 24 * day;
-      time = day + 'day ' + hour + ':';
-    } else time = hour + ':';
-    if (min < 10) {
-      time += '0';
+  //秒转时间
+  function formatSeconds(value) {
+    value = parseInt(value);
+    var time;
+    if (value > -1) {
+      var hour = Math.floor(value / 3600);
+      var min = Math.floor(value / 60) % 60;
+      var sec = value % 60;
+      var day = parseInt(hour / 24);
+      if (day > 0) {
+        hour = hour - 24 * day;
+        time = day + 'day ' + hour + ':';
+      } else time = hour + ':';
+      if (min < 10) {
+        time += '0';
+      }
+      time += min + ':';
+      if (sec < 10) {
+        time += '0';
+      }
+      time += sec;
     }
-    time += min + ':';
-    if (sec < 10) {
-      time += '0';
-    }
-    time += sec;
+    return time;
   }
-  return time;
+
+  // this.setMute = setMute;
+  // this.doPlay = doPlay;
+  // this.doPause = doPause;
+
+  return { setMute, doPlay, doPause, video };
 }

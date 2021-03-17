@@ -80,13 +80,13 @@
 <div class="article-list" id="newsList">
   {% for item in articleList %}
   {% if item.isPhoto %}
-  <div class="photo-card" data-scroll-reveal>
+  <div class="{{'video' if item.isVideo else 'photo'}}-card" data-scroll-reveal>
     <img src="{{item.img | safe}}" />
     <div class="photo-title">
       {{item.title | safe}}
     </div>
     <div class="photo-icon">
-      <i class="icon icon-{{'play' if item.isVideo else 'image'}}"></i>
+      <i class="icon icon-{{'play2' if item.isVideo else 'image'}}"></i>
     </div>
     <div class="photo-author">
       <div class="photo-name">

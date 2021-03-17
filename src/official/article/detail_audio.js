@@ -1,4 +1,6 @@
 require('./detail.less');
-require('../_js/audio.js');
+const { initAudio } = require('../_js/audio.js');
 
-$(function () {});
+$(function () {
+  initAudio();
+});

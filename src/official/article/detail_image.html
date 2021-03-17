@@ -14,7 +14,8 @@
   views: 1230,
   favs: 25,
   author: 'Fengbox',
-  video0: 'http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v',
+  video: 'http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v',
+  video_bg: '/static/imgs/official/stats.png2',
   audio: 'https://www.jq22.com/demo/jqueryaudio201903252328/jq22.mp3',
   photoList: [
   '/static/imgs/official/0/photo.jpg',
@@ -33,7 +34,7 @@
   <div class="swiper-container detail-swiper swiper-outline">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        {% if photoList %}
+        {% if article.photoList %}
         <!-- 相册 -->
         <div class="swiper-container detail-swiper swiper-inline">
           <div class="swiper-wrapper">
@@ -44,7 +45,10 @@
             {% endfor %}
           </div>
           <div class="swiper-pagination"></div>
-          <div class="panel">
+          <div class="detail-panel">
+            {% if article.audio %}
+            <i class="icon icon-volume events" id="btnVolume"></i>
+            {% endif %}
             <i class="icon icon-image panel-left"></i>
             <div class="panel-center">
               <i class="icon icon-arrow_bottom"></i>
@@ -64,37 +68,81 @@
                 <b>{{article.author}}</b>
               </li>
             </ul>
-
           </div>
         </div>
-        {% endif %}
-        {% elif photoList %}
+        {% elif article.video %}
         <!-- 视频 -->
-
-        <div class="vplayer-content-bg"></div>
-        <video class="video" title="{{article.title}}" muted="true" autoplay playsinline webkit-playsinline
-          x5-video-player-type="h5" x5-video-orientation="landscape" controlslist="nodownload" disablePictureInPicture>
-          <source src="{{article.video | safe}}" type="video/mp4">
-          </source>
-          当前浏览器不支持直接播放视频
-        </video>
-        <div class="vplayer-icon">
-          <i class="play-pause icon icon-play"></i>
+        <div class="vplayer">
+          <div class="vplayer-content">
+            <div class="vplayer-content-bg" style="background-image: url('{{article.video_bg | safe}}')"></div>
+            <video class="video" title="{{article.title}}" muted="true" autoplay playsinline webkit-playsinline
+              x5-video-player-type="h5" x5-video-orientation="landscape" controlslist="nodownload"
+              disablePictureInPicture>
+              <source src="{{article.video | safe}}" type="video/mp4">
+              </source>
+              当前浏览器不支持直接播放视频
+            </video>
+            <div class="vplayer-icon">
+              <i class="play-pause icon icon-play"></i>
+            </div>
+            <div class="vplayer-bar">
+              <div class="play-pause icon icon-play"></div>
+              <div class="timebar">
+                <span class="timebar-current">00:00:00</span>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                  </div>
+                </div>
+                <span class="timebar-total">00:00:00</span>
+              </div>
+              <div class="icon icon-volume">
+                <div class="volumebar">
+                  <div class="volumewrap">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="icon icon-fullscreen"></div>
+            </div>
+          </div>
+          <div class="detail-panel">
+            <i class="icon icon-volume events" id="btnVolume"></i>
+            <i class="icon icon-play2 detail-panel-left"></i>
+            <div class="events detail-panel-center btn-swiper-next">
+              <i class="icon icon-arrow_bottom"></i>
+              <b>文章标题</b>
+            </div>
+            <ul class="detail-panel-right">
+              <li>
+                <i class="icon icon-view"></i>
+                <b>{{article.views}}</b>
+              </li>
+              <li class="events" id="btnFav">
+                <i class="icon icon-fav"></i>
+                <b>{{article.favs}}</b>
+              </li>
+              <li>
+                <i class="icon icon-user"></i>
+                <b>{{article.author}}</b>
+              </li>
+            </ul>
+          </div>
         </div>
-
         {% endif %}
       </div>
       <div class="swiper-slide">
         <div class="swiper-scroll">
           <div class="btn-swiper-pre">
+            {% if article.photoList %}
             <i class="icon icon-image"></i>
             点击重看图片
-          </div>
-          <div class="btn-swiper-pre">
+            {% else %}
             <i class="icon icon-play"></i>
             点击重看视频
-          </div>
-          <div class="detail-hd">
+            {% endif %}
           </div>
           <div class="detail-bd">
             <h1 class="detail-title">

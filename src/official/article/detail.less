@@ -2,6 +2,8 @@
 @import '../_css/video.less';
 @import '../_css/audio.less';
 
+@swiper_height: calc(~'100vh - 120px');
+
 .article {
   .detail {
     &-hd {
@@ -47,8 +49,6 @@
       text-indent: 2em;
       font-weight: 300;
     }
-
-    @swiper_height: calc(~'100vh - 120px');
 
     &-swiper {
       width: 100%;
@@ -100,8 +100,19 @@
     bottom: 110px;
     transform: unset;
   }
+}
 
-  .panel {
+// --
+.detail-image {
+  .vplayer {
+    &-content {
+      height: @swiper_height;
+    }
+    &-bar {
+      display: none;
+    }
+  }
+  .detail-panel {
     position: absolute;
     left: 0;
     right: 0;
@@ -111,11 +122,20 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-
     padding: 50px 50px 30px 50px;
     font-size: 40px;
     font-family: enfont;
     color: #fff;
+
+    pointer-events: none;
+
+    .events {
+      pointer-events: visible;
+
+      &:active {
+        opacity: 0.5;
+      }
+    }
 
     b {
       font-weight: 300;
@@ -140,12 +160,13 @@
       padding-bottom: 5px;
       margin: 0;
     }
-  }
-}
 
-// --
-.detail-image {
-  .detail {
+    #btnVolume {
+      position: absolute;
+      top: 50px;
+      right: 50px;
+      font-size: 60px;
+    }
   }
 }
 

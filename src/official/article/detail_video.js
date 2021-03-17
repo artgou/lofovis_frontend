@@ -1,4 +1,6 @@
 require('./detail.less');
-require('../_js/video.js');
+const { initVideo } = require('../_js/video.js');
 
-$(function () {});
+$(function () {
+  initVideo();
+});

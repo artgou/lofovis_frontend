@@ -1,4 +1,4 @@
-$(function () {
+export function initAudio() {
   var playerAudio = $('.aplayer audio');
   var playPause = $('.aplayer .play-pause');
   var timeCurrent = $('.aplayer .timebar-current');
@@ -82,19 +82,19 @@ $(function () {
     audio.pause();
     playPause.removeClass('icon-replay').removeClass('icon-pause').addClass('icon-play').fadeIn();
   }
-});
 
-//秒转时间
-function formatSeconds(value) {
-  value = parseInt(value);
-  min = Math.floor(value / 60) % 60;
-  sec = value % 60;
-  let str = '';
-  if (sec > 0) {
-    str += `${sec}''`;
+  //秒转时间
+  function formatSeconds(value) {
+    value = parseInt(value);
+    let min = Math.floor(value / 60) % 60;
+    let sec = value % 60;
+    let str = '';
+    if (sec > 0) {
+      str += `${sec}''`;
+    }
+    if (min > 0) {
+      str += `${min}`;
+    }
+    return str;
   }
-  if (min > 0) {
-    str += `${min}`;
-  }
-  return str;
 }
