@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+<test>
+  {% set iconfont = '//at.alicdn.com/t/font_2393995_lmi905vy6s.css' %}
+</test>
 
 <head>
   <meta charset="utf-8">
@@ -20,7 +23,7 @@
     integrity="sha256-+aVbzIDW2LKBUpnFUBzdqo5fP2l8249c4ePpJAlxF7o=" crossorigin="anonymous">
   {% endif %}
 
-  <link rel="stylesheet" href="//at.alicdn.com/t/font_2393995_lmi905vy6s.css">
+  <link rel="stylesheet" href="{{ iconfont | safe}}">
   {% block headBlock %}
   {% endblock %}
   {{cssInject | safe}}
@@ -28,6 +31,5 @@
 </head>
 
 <body style="{{bodyStyle | safe}}" {{bodyDomProps | safe}}>
-  <!-- <div class="root">{DEL_CLOSE_DIV}}</div> -->
-  <div class="page">
-    {{headerHTML | safe}}
+  <div class="page">{DEL_CLOSE_DIV}}</div>
+  {{headerHTML | safe}}

@@ -7,11 +7,11 @@
 
 <test>
   {% set faqList = [
-  {type: 2, text: '与您相识非常荣幸<br>期待与您的携手合作<br>那将是一次极富创意和价值的体验'},
-  {type: 1, text: 'LOFO主要业务方向？'},
-  {type: 2, text: '品牌设计、品牌管理、多媒体互动<br>营销策略、营销活动'},
-  {type: 1, text: '服务过哪些客户？'},
-  {type: 2, img: '/static/imgs/official/partner_color.png'}
+  {type: 'A', text: '与您相识非常荣幸<br>期待与您的携手合作<br>那将是一次极富创意和价值的体验'},
+  {type: 'Q', text: 'LOFO主要业务方向？'},
+  {type: 'A', text: '品牌设计、品牌管理、多媒体互动<br>营销策略、营销活动'},
+  {type: 'Q', text: '服务过哪些客户？'},
+  {type: 'A', img: '/static/imgs/web/partner_color.png'}
   ] %}
 
   {% set intro = 'LOFO是一家创意先行的机构，2013年成立以来每一个创意的实现都坚持这一原则。先后<b>为50+以上企业提供长期的项目品牌设计及品牌管理服务</b>。' %}
@@ -37,7 +37,7 @@
   </div>
   <div class="faq-list">
     {% for item in faqList %}
-    <div class="faq-item {{ 'left' if item.type === 1 else 'right' }}">
+    <div class="faq-item {{ 'left' if item.type === 'Q' else 'right' }}">
       <div class="faq-item-text">
         {% if item.img %}
         <img src="{{item.img | safe}}">
@@ -46,9 +46,9 @@
         {% endif %}
       </div>
       <div class="faq-item-corner">
-        <div class="corner {{ 'left' if item.type === 1 else 'right' }}"></div>
+        <div class="corner {{ 'left' if item.type === 'Q' else 'right' }}"></div>
       </div>
-      <div class="icon icon-{{ 'user' if item.type === 1 else 'lf' }}"></div>
+      <div class="icon icon-{{ 'user' if item.type === 'Q' else 'lf' }}"></div>
     </div>
     {% endfor %}
   </div>

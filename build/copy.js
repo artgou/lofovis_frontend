@@ -45,4 +45,4 @@ function copyFiles(projName, distName) {
   });
 }
 
-copyFiles(package.name.replace('_frontend', ''), 'official');
+copyFiles(package.name.replace('_frontend', ''), 'web');
