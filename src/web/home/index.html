@@ -62,7 +62,7 @@
 {% endif %}
 
 {% if statsList %}
-<div class="home-stats" data-scroll-reveal>
+<div class="home-stats" data-scroll-reveal style="{{homeStatsBgColor | safe}};">
   {% for item in statsList %}
   <div class="stats-item">
     <div class="stats-num">

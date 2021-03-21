@@ -143,9 +143,11 @@ a.link {
     background-color: @_colorRed !important;
     border-color: unset !important;
   }
+  &.disabled,
   &:disabled {
     background-color: #ccc;
     pointer-events: none;
+    opacity: 1 !important;
   }
 }
 

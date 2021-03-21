@@ -28,7 +28,7 @@
     {% set disalbed = '' if item.link else 'disabled' %}
     <div class="case-item">
       <div class="case-item-title">{{item.title | safe}}</div>
-      <button type="button" class="btn btn-secondary btn-block lofo-btn" {{disalbed}}>{{item.label | safe}}</button>
+      <a href="{{item.link | safe}}" class="btn btn-secondary btn-block lofo-btn {{disalbed}}">{{item.label | safe}}</a>
       <div class="case-item-desc">{{item.desc | safe}}</div>
     </div>
     {% endfor %}
