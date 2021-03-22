@@ -8,18 +8,13 @@
 
 <test>
   {% set desc = '有竞争力的薪资和弹性工作制<br>国家法定假日 / 免费午餐供应<br>全IMAC平台 / 轻松的创意氛围' %}
-  {%
-  set downloadList = [
-  {label: 'Download', title: '品牌设计类案例', desc: '更新于2020年12月（37.06MB）', link: '#'},
-  {label: 'Download', title: '线下营销活动类', desc: '欢迎来电索取', link: ''}
-  ]
-  %}
   {% set fieldsList = [
   { name: 'position', type: 'select', label: '应聘职位', required: true, placeholder: '点击选择职位', options: [
   {label: '中', value: 1},
   {label: '2', value: 2}
   ]},
-  { name: 'status', type: 'select', label: '目前状态', required: true, placeholder: '点击选择状态'},
+  { name: 'status', type: 'select', label: '目前状态', required: true, placeholder: '点击选择状态', options: [ { value: '1',
+  label: '在职' }, { value: '2', label: '离职' } ]},
   { name: 'name', type: 'text', label: '姓名', required: true, placeholder: '点击选择状态'},
   { name: 'contact', type: 'text', label: '联系电话/微信', required: true},
   { name: 'email', type: 'email', label: 'Email', required: true},

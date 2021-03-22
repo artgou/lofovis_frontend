@@ -7,6 +7,11 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"
   integrity="sha256-KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms=" crossorigin="anonymous"></script>
 
+{% if hasWechat or wechatShare %}
+<script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+{% endif %}
+<script src="//res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+<script src="/static/libs/layui/layui.all.js" charset="utf-8"></script>
 {% if hasSwiper %}
 <script src="https://cdn.jsdelivr.net/npm/swiper@6.4.15/swiper-bundle.min.js"
   integrity="sha256-wmKTB2rlSM0GFMWUbpwW80vXgQ/S9j3uqijfYc6TUik=" crossorigin="anonymous"></script>

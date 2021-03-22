@@ -21,7 +21,7 @@ const FTP_OPTIONS = {
 // 后端项目相对目录(tools.js使用)
 const BACKEND_PATH = '../lofovis/';
 // 默认模块目录
-const DEFAULT_MODULE = 'm';
+const DEFAULT_MODULE = 'web';
 // 开发环境下的资源和接口代理
 const PROXY_TARGET = 'http://localhost:18003';
 const PROXY_PATHS = ['/libs', '/static', '/upload', '/api/', `/${DEFAULT_MODULE}/`];

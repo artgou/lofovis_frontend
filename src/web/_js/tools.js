@@ -15,7 +15,7 @@ export function Trim(str) {
  */
 export function Int(val) {
   val = parseInt(Number(val), 10);
-  return (isNaN(val)) ? 0 : val;
+  return isNaN(val) ? 0 : val;
 }
 
 /**
@@ -27,7 +27,7 @@ export function Int(val) {
  */
 export function Float(val, len = 2, returnStr = false) {
   val = parseFloat(Number(val));
-  val = (isNaN(val)) ? 0 : val;
+  val = isNaN(val) ? 0 : val;
   if (!returnStr) {
     let tmp = Math.pow(10, len);
     return Math.round(val * tmp) / tmp;
@@ -41,15 +41,15 @@ export function Float(val, len = 2, returnStr = false) {
  * @param cols
  */
 export function arrayChunk(arr, cols = 1) {
-  let chunks = []
+  let chunks = [];
   if (arr) {
-    let count = Math.ceil(arr.length / cols)
+    let count = Math.ceil(arr.length / cols);
     while (count > 0) {
-      chunks.push(arr.slice((count - 1) * cols, count * cols))
-      count--
+      chunks.push(arr.slice((count - 1) * cols, count * cols));
+      count--;
     }
   }
-  return chunks.reverse()
+  return chunks.reverse();
 }
 
 // 修改地址参数
@@ -58,40 +58,39 @@ export function changeURLParam(url, key, val) {
     url = typeof window != 'undefind' ? window.location.href : '';
   }
   let kv = key + '=' + val;
-  if (url.indexOf('?') === -1) url += '?'
+  if (url.indexOf('?') === -1) url += '?';
   if (url.match(key + '=([^&]*)')) {
-    url = url.replace(eval('/[?](' + key + '=)([^&]*)/g'), '?' + kv)
-      .replace(eval('/[&](' + key + '=)([^&]*)/g'), '&' + kv)
+    url = url.replace(eval('/[?](' + key + '=)([^&]*)/g'), '?' + kv).replace(eval('/[&](' + key + '=)([^&]*)/g'), '&' + kv);
   } else {
-    url += '&' + kv
+    url += '&' + kv;
   }
-  return url
+  return url;
 }
 
 const checkRespData = (retData, success = true) => {
   if (retData && retData.okmsg) {
-    let btnArr = Array.isArray(retData.okbtns) ? retData.okbtns : (retData.okbtns || '确定').split(',')
-    let alertFunc = success ? Alert.success : Alert.warning
-    alertFunc(retData.okmsg, null, btnArr, function(btnIndex) {
+    let btnArr = Array.isArray(retData.okbtns) ? retData.okbtns : (retData.okbtns || '确定').split(',');
+    let alertFunc = success ? Alert.success : Alert.warning;
+    alertFunc(retData.okmsg, null, btnArr, function (btnIndex) {
       if (btnArr.length > 1 && retData.okurls) {
-        let urlArr = Array.isArray(retData.okurls) ? retData.okurls : (retData.okurls || '').split(',')
+        let urlArr = Array.isArray(retData.okurls) ? retData.okurls : (retData.okurls || '').split(',');
         if (urlArr[btnIndex]) {
-          window.location.href = urlArr[btnIndex]
+          window.location.href = urlArr[btnIndex];
         }
       } else {
         if (retData.backurl) {
-          window.location.href = retData.backurl
+          window.location.href = retData.backurl;
         } else if (retData.refresh) {
           window.location.reload();
         }
       }
     });
   } else if (retData.backurl) {
-    window.location.href = retData.backurl
+    window.location.href = retData.backurl;
   } else if (retData.refresh) {
     window.location.reload();
   }
-}
+};
 
 /**
  * 异步请求数据
@@ -110,12 +109,12 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
     dataType = ajaxOptions.dataType.toLowerCase();
   }
   // 添加当前页地址，便于登录后返回
-  const backurl = window.location.href
+  const backurl = window.location.href;
   if (!data) data = {};
-  data.backurl = backurl
+  data.backurl = backurl;
   Toast.info('<i class="weui-loading"></i> 正在请求数据', -1);
   setBtnDisabled(button, true, '正在提交数据');
-  $('input').blur()
+  $('input').blur();
   var ajaxParams = {
     url: url,
     data: data,
@@ -124,11 +123,11 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
     cache: false,
     timeout: 180000, // ms
     xhrFields: {
-      withCredentials: true
+      withCredentials: true,
     },
-    traditional:true,
+    traditional: true,
     beforeSend: (req) => {
-      req.setRequestHeader('X-Token', $('meta[name=x-token]').attr('content'))
+      req.setRequestHeader('X-Token', $('meta[name=x-token]').attr('content'));
     },
     success(ret) {
       Toast.clear();
@@ -163,11 +162,11 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
         if (errmsg && errmsg !== 'NOMSG') {
           Alert.success(errmsg);
         } else {
-          checkRespData(retData)
+          checkRespData(retData);
         }
       } else {
         if (errmsg && errmsg.okmsg) {
-          checkRespData(errmsg, false)
+          checkRespData(errmsg, false);
         } else {
           if (errmsg.indexOf('NO_ICON@') > -1) {
             Alert(errmsg.replace('NO_ICON@', ''));
@@ -197,15 +196,15 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
         errmsg = res.responseText || res.statusText;
       }
       if (res.status == 401) {
-        Alert.error('权限不够，请先登录！', null, ['取消', '立即登录'], function(btnIndex) {
+        Alert.error('权限不够，请先登录！', null, ['取消', '立即登录'], function (btnIndex) {
           if (btnIndex === 1) {
-            window.location.href = changeURLParam(window.USER_LOGIN_URL || '/m/user/login', 'backurl', backurl)
+            window.location.href = changeURLParam(window.USER_LOGIN_URL || '/m/user/login', 'backurl', backurl);
           }
         });
         return;
       }
       if (errmsg == 'timeout') {
-        errmsg = '请求超时!'
+        errmsg = '请求超时!';
       }
       Alert.error(errmsg);
       if (onError) {
@@ -229,25 +228,25 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
   $.ajax(ajaxParams);
 }
 
-Ajax.get = function(url, data, onSuccess, onError, dataType, options = null, button = null) {
+Ajax.get = function (url, data, onSuccess, onError, dataType, options = null, button = null) {
   let args = Array.apply(this, arguments);
   args.unshift('get');
-  Ajax.apply(this, args)
+  Ajax.apply(this, args);
 };
-Ajax.post = function(url, data, onSuccess, onError, dataType, options = null, button = null) {
+Ajax.post = function (url, data, onSuccess, onError, dataType, options = null, button = null) {
   let args = Array.apply(this, arguments);
   args.unshift('post');
-  Ajax.apply(this, args)
+  Ajax.apply(this, args);
 };
-Ajax.put = function(url, data, onSuccess, onError, dataType, options = null, button = null) {
+Ajax.put = function (url, data, onSuccess, onError, dataType, options = null, button = null) {
   let args = Array.apply(this, arguments);
   args.unshift('put');
-  Ajax.apply(this, args)
+  Ajax.apply(this, args);
 };
-Ajax.delete = function(url, data, onSuccess, onError, dataType, options = null, button = null) {
+Ajax.delete = function (url, data, onSuccess, onError, dataType, options = null, button = null) {
   let args = Array.apply(this, arguments);
   args.unshift('delete');
-  Ajax.apply(this, args)
+  Ajax.apply(this, args);
 };
 
 /**
@@ -271,18 +270,18 @@ export function Actionsheet(title, itemArr, callback) {
                 <div class="weui-actionsheet__cell" id="actsheetCancel">取消</div>
             </div>
         </div>
-    </div>`
-    $('body').append(html)
+    </div>`;
+    $('body').append(html);
     $sheet = $('.js_sctionsheet .weui-actionsheet');
   }
-  let itemHtmlArr = []
+  let itemHtmlArr = [];
   for (let i = 0; i < itemArr.length; i++) {
-    let item = itemArr[i]
-    let label = typeof item === "object" ? (item.label ? item.label : '') : item + ''
-    itemHtmlArr.push(`<div class="weui-actionsheet__cell" data-index="${i}">${label}</div>`)
+    let item = itemArr[i];
+    let label = typeof item === 'object' ? (item.label ? item.label : '') : item + '';
+    itemHtmlArr.push(`<div class="weui-actionsheet__cell" data-index="${i}">${label}</div>`);
   }
-  $('.weui-actionsheet__title-text').html(title)
-  $('.weui-actionsheet__menu').html(itemHtmlArr.join(''))
+  $('.weui-actionsheet__title-text').html(title);
+  $('.weui-actionsheet__menu').html(itemHtmlArr.join(''));
   var $sheetMask = $('.js_sctionsheet .weui-mask');
 
   function hideActionSheet() {
@@ -291,17 +290,16 @@ export function Actionsheet(title, itemArr, callback) {
   }
   $sheetMask.on('click', hideActionSheet);
   $('.weui-actionsheet__menu .weui-actionsheet__cell').on('click', (e) => {
-    let index = $(e.target).data('index')
-    callback && callback(itemArr[index], index)
-    hideActionSheet()
+    let index = $(e.target).data('index');
+    callback && callback(itemArr[index], index);
+    hideActionSheet();
   });
   $('.weui-actionsheet__action .weui-actionsheet__cell').on('click', (e) => {
-    hideActionSheet()
+    hideActionSheet();
   });
   $sheet.addClass('weui-actionsheet_toggle');
   $sheetMask.fadeIn(200);
 }
-
 
 /**
  * 弹出提示信息
@@ -311,18 +309,18 @@ export function Actionsheet(title, itemArr, callback) {
  * @param callback    按钮回调函数(btnIndex, btnItem)
  */
 export function Alert(content, title, buttonArr, callback, type, className, isCloseByMask = false, isCheckHandle = false, isPopup = false) {
-  let iconHtml = type ? `<div class="weui-alert__icon"><img src="/static/m/v1img/icon/msg_${type}.png" /></div>` : ''
-  let ttHtml = title || ''
+  let iconHtml = type ? `<div class="weui-alert__icon"><img src="/static/m/v1img/icon/msg_${type}.png" /></div>` : '';
+  let ttHtml = title || '';
   if (title && title.indexOf('<') === -1) {
-    title = `<strong class="weui-dialog__title">${ title }</strong>`
-    ttHtml = title ? `<div class="weui-dialog__hd">${title}</div>` : ''
+    title = `<strong class="weui-dialog__title">${title}</strong>`;
+    ttHtml = title ? `<div class="weui-dialog__hd">${title}</div>` : '';
   }
   let btnHtml = '';
   let css = '';
   // 默认按钮样式
   // const btnClass = ['weui-alert__btn weui-dialog__btn', 'weui-alert__btn weui-dialog__btn weui-dialog__btn_primary']
   // 自定义样式
-  const btnClass = ['weui-alert__btn weui-btn weui-btn_default', 'weui-alert__btn weui-btn weui-btn_primary']
+  const btnClass = ['weui-alert__btn weui-btn weui-btn_default', 'weui-alert__btn weui-btn weui-btn_primary'];
   if (buttonArr && buttonArr.length > 0) {
     let btnCount = buttonArr.length;
     for (let i = 0; i < btnCount; i++) {
@@ -332,26 +330,26 @@ export function Alert(content, title, buttonArr, callback, type, className, isCl
       } else {
         css = i === btnCount - 1 ? 'weui-dialog__btn_primary' : 'weui-dialog__btn_default';
       }
-      btnHtml += `<a href="javascript:;" class="${btnClass[0]} ${css}" data-index="${i}">${btn.label || btn}</a>`
+      btnHtml += `<a href="javascript:;" class="${btnClass[0]} ${css}" data-index="${i}">${btn.label || btn}</a>`;
     }
   } else if (isCloseByMask) {
     // 可以直接点击背景
   } else {
-    btnHtml = `<a href="javascript:;" class="${btnClass[1]} " data-index="0">确定</a>`
+    btnHtml = `<a href="javascript:;" class="${btnClass[1]} " data-index="0">确定</a>`;
   }
   let id = 'dialog_' + Math.floor(Math.random() * 1000);
-  let contentHtml = null
+  let contentHtml = null;
   if (isPopup) {
     if (isCloseByMask === undefined) {
-      isCloseByMask = true
+      isCloseByMask = true;
     }
-    contentHtml = content + '<div class="weui-dialog__ft"></div>'
+    contentHtml = content + '<div class="weui-dialog__ft"></div>';
   } else {
-    contentHtml = `${ iconHtml + ttHtml }
-      <div class="weui-dialog__bd">${ content || '' }</div>
-      <div class="weui-dialog__ft ${ buttonArr && buttonArr.length > 1 ? '' : 'only-one-btn' }">${ btnHtml }</div>`
+    contentHtml = `${iconHtml + ttHtml}
+      <div class="weui-dialog__bd">${content || ''}</div>
+      <div class="weui-dialog__ft ${buttonArr && buttonArr.length > 1 ? '' : 'only-one-btn'}">${btnHtml}</div>`;
   }
-  let html = `<div class="js_dialog ${className || ''}" id="${ id }" style="display: none;">
+  let html = `<div class="js_dialog ${className || ''}" id="${id}" style="display: none;">
       <div class="weui-mask"></div>
       <div class="weui-dialog">
         ${contentHtml}
@@ -360,12 +358,12 @@ export function Alert(content, title, buttonArr, callback, type, className, isCl
   $('body').append(html);
   let $inst = $('#' + id);
   if (isCloseByMask) {
-    $(`#${id} .weui-mask`).click(function() {
+    $(`#${id} .weui-mask`).click(function () {
       $inst.remove();
-    })
+    });
   }
   $inst.fadeIn(100);
-  $inst.on('click', '.weui-alert__btn', function() {
+  $inst.on('click', '.weui-alert__btn', function () {
     let btnIndex = parseInt($(this).data('index'));
     // $inst.fadeOut(50, function () {
     if (callback) {
@@ -380,118 +378,120 @@ export function Alert(content, title, buttonArr, callback, type, className, isCl
   });
 }
 
-Alert.info = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'info')
-Alert.warning = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'warning')
-Alert.error = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'error')
-Alert.success = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'success')
-Alert.popup = (content, isCloseByMask = true) => Alert(content, null, null, null, 'success', null, isCloseByMask, false, true)
+Alert.info = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'info');
+Alert.warning = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'warning');
+Alert.error = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'error');
+Alert.success = (content, title, buttonArr, callback) => Alert(content, title, buttonArr, callback, 'success');
+Alert.popup = (content, isCloseByMask = true) => Alert(content, null, null, null, 'success', null, isCloseByMask, false, true);
 Alert.popupWith = (params, isCloseByMask = true) => {
-  let {
-    img,
-    buttons
-  } = params
+  let { img, buttons } = params;
   if (Array.isArray(buttons)) {
-    let arr = buttons.map(btn => `<a href="${btn.link}" class="weui-btn ${btn.inverted ? 'inverted' : 'weui-btn_primary'}">${btn.label}</a>`)
-    buttons = arr.join('')
+    let arr = buttons.map((btn) => `<a href="${btn.link}" class="weui-btn ${btn.inverted ? 'inverted' : 'weui-btn_primary'}">${btn.label}</a>`);
+    buttons = arr.join('');
   }
-  let content = ''
-  if (img) content += `<div class="popup-img"><img src="${img}"></div>`
-  if (buttons) content += `<div class="popup-buttons">${buttons}</div>`
-  Alert.popup(content, isCloseByMask)
-}
+  let content = '';
+  if (img) content += `<div class="popup-img"><img src="${img}"></div>`;
+  if (buttons) content += `<div class="popup-buttons">${buttons}</div>`;
+  Alert.popup(content, isCloseByMask);
+};
 
-Alert.close = function() {
-  $('input').blur()
-  $('.js_dialog').remove()
-}
-window.Alert = Alert
+Alert.close = function () {
+  $('input').blur();
+  $('.js_dialog').remove();
+};
+window.Alert = Alert;
 
 export function Modal(url, html, option) {
-  let id = 'dialog_' + Math.floor(Math.random() * 1000)
+  let id = 'dialog_' + Math.floor(Math.random() * 1000);
 
-  let bodyWidth = '100%'
-  let bodyHeight = '100%'
+  let bodyWidth = '100%';
+  let bodyHeight = '100%';
   if (option && option.size) {
-    let sizeArray = option.size.split(',')
+    let sizeArray = option.size.split(',');
     if (sizeArray[0] !== '0') {
-      bodyWidth = sizeArray[0] + 'px'
+      bodyWidth = sizeArray[0] + 'px';
     }
     if (sizeArray[1] !== '0') {
-      bodyHeight = sizeArray[1] + 'px'
+      bodyHeight = sizeArray[1] + 'px';
     }
   }
 
   let bodyStyle = `max-width: 100%; border-radius: 0; width: ${bodyWidth}; height: ${bodyHeight};
   transform: translate(0, ${bodyHeight});transition: transform linear 300ms;
-  `
-  let frameStyle = `width: 100%; height: 100%; max-height: ${bodyHeight};`
-  let closeStyle = 'position: absolute; top: 10px; right: 10px; font-size: 10px; font-weight: bold; color: red;'
+  `;
+  let frameStyle = `width: 100%; height: 100%; max-height: ${bodyHeight};`;
+  let closeStyle = 'position: absolute; top: 10px; right: 10px; font-size: 10px; font-weight: bold; color: red;';
   let modalHTML = `
         <div id="${id}" class="js_dialog iframe-dialog" data-id="${id}" style="justify-content: flex-end;">
           <div class="weui-mask"></div>
           <div class="weui-dialog modal-body" style="${bodyStyle}">
             <div id="closeFrame" style="${closeStyle}">关闭</div>
           </div>
-        </div>`
-  $('body').append(modalHTML)
+        </div>`;
+  $('body').append(modalHTML);
   // 内容
   if (html) {
-    let htmlArgs = html.split('@')
+    let htmlArgs = html.split('@');
     if (htmlArgs[0] === 'iframe') {
-      html = `<iframe id="tmpModalIFrame" src="${url}" frameborder="0" style="${frameStyle}"></iframe>`
+      html = `<iframe id="tmpModalIFrame" src="${url}" frameborder="0" style="${frameStyle}"></iframe>`;
     }
-    $('.modal-body').append(html)
+    $('.modal-body').append(html);
   } else if (url) {
-    $('.modal-body').append('loading...')
-    Ajax.get(url, null, (ret) => {
-      $('.modal-body').append(ret)
-    }, function() {
-      $('.modal-body').append(`<p style="color:red">服务器内容获取失败<br>${url}</p>`)
-    }, 'html')
+    $('.modal-body').append('loading...');
+    Ajax.get(
+      url,
+      null,
+      (ret) => {
+        $('.modal-body').append(ret);
+      },
+      function () {
+        $('.modal-body').append(`<p style="color:red">服务器内容获取失败<br>${url}</p>`);
+      },
+      'html'
+    );
   }
-  $("#tmpModalIFrame").on('load', function() {
+  $('#tmpModalIFrame').on('load', function () {
     try {
-      let ifr = $(this)
-      let ifrBody = ifr.contents().find("body")
-      setTimeout(function() {
-        ifr.height(ifrBody[0].scrollHeight)
-      }, 20)
+      let ifr = $(this);
+      let ifrBody = ifr.contents().find('body');
+      setTimeout(function () {
+        ifr.height(ifrBody[0].scrollHeight);
+      }, 20);
     } catch (err) {
-      console.warn(err)
+      console.warn(err);
     }
-  })
-  let $inst = $('#' + id)
-  $inst.fadeIn(300)
-  $inst.find('.modal-body').css('transform', 'translate(0, 0)')
+  });
+  let $inst = $('#' + id);
+  $inst.fadeIn(300);
+  $inst.find('.modal-body').css('transform', 'translate(0, 0)');
 
   if (option && option.maskClickable) {
-    $inst.on('click', '.weui-mask', closeFrame)
+    $inst.on('click', '.weui-mask', closeFrame);
   }
 
-  $inst.on('click', '#closeFrame', closeFrame)
+  $inst.on('click', '#closeFrame', closeFrame);
 
   function closeFrame() {
     if (option && option.closeNOTip) {
-      $inst.find('.modal-body').css('transform', `translate(0, ${bodyHeight})`)
-      window.setTimeout(function() {
-        $inst.fadeOut(50, function() {
-          $inst.remove()
-        })
-      }, 250)
+      $inst.find('.modal-body').css('transform', `translate(0, ${bodyHeight})`);
+      window.setTimeout(function () {
+        $inst.fadeOut(50, function () {
+          $inst.remove();
+        });
+      }, 250);
     } else {
-      Alert.warning('确认放弃授权?', null, ['确认', '取消'], function(btnIndex) {
+      Alert.warning('确认放弃授权?', null, ['确认', '取消'], function (btnIndex) {
         if (btnIndex === 0) {
-          $inst.find('.modal-body').css('transform', `translate(0, ${bodyHeight})`)
-          window.setTimeout(function() {
-            $inst.fadeOut(50, function() {
-              $inst.remove()
-            })
-          }, 250)
+          $inst.find('.modal-body').css('transform', `translate(0, ${bodyHeight})`);
+          window.setTimeout(function () {
+            $inst.fadeOut(50, function () {
+              $inst.remove();
+            });
+          }, 250);
         }
         if (btnIndex === 1) {
-
         }
-      })
+      });
     }
   }
 }
@@ -504,42 +504,42 @@ export function Toast(message, type, times = 1500) {
   const icons = {
     loading: '<i class="weui-loading weui-toast"></i>',
     success: '<i class="weui-success-no-circle weui-toast"></i>',
-  }
+  };
   let iconHtml = icons[type];
   if (!iconHtml) {
     let colors = {
       warn: '#fff300',
       error: '#f43530',
-    }
+    };
     iconHtml = `<style>
         .weui-toast { min-width: 100px; min-height: 0; width: auto; height: auto; padding: 20px; }
-        .weui-toast__content { margin: 0; line-height: 1.6; max-width: 500px; color: ${ colors[type] || '#fff' } }
+        .weui-toast__content { margin: 0; line-height: 1.6; max-width: 500px; color: ${colors[type] || '#fff'} }
       </style>`;
   }
   if (!message) message = '';
-  let bgClickAble = true
+  let bgClickAble = true;
   if (times < 0) {
-    bgClickAble = false
+    bgClickAble = false;
   }
-  let bg = bgClickAble === true ? '' : `<div class="weui-mask_transparent"></div>`
+  let bg = bgClickAble === true ? '' : `<div class="weui-mask_transparent"></div>`;
   let id = 'toast_' + Math.floor(Math.random() * 1000);
-  let html = `<div style="display: none;" id="${ id }">
+  let html = `<div style="display: none;" id="${id}">
         ${bg}
         <div class="weui-toast" style="left: 0; margin-left: 0;">
-            ${ iconHtml || '' }
-            <p class="weui-toast__content">${ message }</p>
+            ${iconHtml || ''}
+            <p class="weui-toast__content">${message}</p>
         </div>
     </div>`;
   $('body').append(html);
   let $inst = $('#' + id);
   $inst.fadeIn(100);
   let toast = $('#' + id + ' .weui-toast');
-  toast.css('margin-left', `-${ toast.width() / 2 + 20 }px`);
+  toast.css('margin-left', `-${toast.width() / 2 + 20}px`);
   toast.css('left', '50%');
-  toast.css('top', `${ ($(window).height() - toast.height()) / 2.5 }px`);
+  toast.css('top', `${($(window).height() - toast.height()) / 2.5}px`);
   if (times > 0) {
-    setTimeout(function() {
-      $inst.fadeOut(50, function() {
+    setTimeout(function () {
+      $inst.fadeOut(50, function () {
         $inst.remove();
       });
     }, times);
@@ -548,7 +548,7 @@ export function Toast(message, type, times = 1500) {
 
 Toast.clear = () => {
   $('.weui-toast').parent().remove();
-}
+};
 Toast.loading = (message, times = 1500) => Toast(message || '加载中...', 'loading', times);
 Toast.info = (message, times = 1500) => Toast(message, 'info', times);
 Toast.warning = (message, times = 1500) => Toast(message, 'warn', times);
@@ -564,7 +564,7 @@ Toast.success = (message, times = 1500) => Toast(message || '操作成功', 'suc
  * @param modalOps 模态参数
  */
 export function showModal(url, html, title, btnArr, modalOps) {
-  console.log('show..Modal..TODO..')
+  console.log('show..Modal..TODO..');
 }
 
 /**
@@ -593,22 +593,22 @@ export function setBtnDisabled($btn, isDisabled, label) {
 // 判断是否为手机号
 export function isMobileNo(pone) {
   const reg = /^[1][0-9]{10}$/;
-  return reg.test(pone)
+  return reg.test(pone);
 }
 
 // 判断是否为电话号码
 export function isTelNo(tel) {
   const reg = /^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
-  return !!reg.test(tel)
+  return !!reg.test(tel);
 }
 
 export function isMobilePhone(mobile, evt) {
   if (!isMobileNo(mobile)) {
     if (!evt) {
-      Toast.info('手机号码格式错误')
+      Toast.info('手机号码格式错误');
     } else {
-      Toast.info('手机号码格式错误')
-      evt.preventDefault()
+      Toast.info('手机号码格式错误');
+      evt.preventDefault();
     }
     return false;
   }
@@ -623,22 +623,23 @@ export function isMobilePhone(mobile, evt) {
  */
 export function sendSMSCode(mobile, type, callback) {
   if (!mobile || (!isMobileNo(mobile) && mobile.indexOf('HIDE@') === -1)) {
-    return Toast('手机号码错误')
+    return Toast('手机号码错误');
   }
-  Ajax('POST', '/api/sms/send', {
-    mobile,
-    type
-  }, ({
-    errno,
-    errmsg,
-    data
-  }) => {
-    if (callback) {
-      callback(data)
-    } else if (errno === 0 && !data.smsid) {
-      return Toast('短信发送失败')
+  Ajax(
+    'POST',
+    '/api/sms/send',
+    {
+      mobile,
+      type,
+    },
+    ({ errno, errmsg, data }) => {
+      if (callback) {
+        callback(data);
+      } else if (errno === 0 && !data.smsid) {
+        return Toast('短信发送失败');
+      }
     }
-  })
+  );
 }
 
 /**
@@ -650,79 +651,81 @@ export function sendSMSCode(mobile, type, callback) {
  * @param callback
  */
 export function initSMSButton(btnQName = '#btnSMS', mobileQName = '#mobile', smsType, ms = 60, callback = null) {
-  const $btn = $(btnQName)
-  if ($btn.cding > 0) return
+  const $btn = $(btnQName);
+  if ($btn.cding > 0) return;
   if (!smsType) {
-    smsType = Int($btn.data('type'))
+    smsType = Int($btn.data('type'));
   }
-  $btn.click(function() {
-    let mobile = Trim($(mobileQName).val())
-    sendSMSCode(mobile, smsType, function(data) {
-      if (!data || !data.smsid) return
-      $btn.cding = ms || 60
+  $btn.click(function () {
+    let mobile = Trim($(mobileQName).val());
+    sendSMSCode(mobile, smsType, function (data) {
+      if (!data || !data.smsid) return;
+      $btn.cding = ms || 60;
       // $btn.addClass('weui-btn_disabled')
-      setBtnDisabled($btn, true, `剩余 ${--$btn.cding} 秒`)
-      const timeId = setInterval(function() {
+      setBtnDisabled($btn, true, `剩余 ${--$btn.cding} 秒`);
+      const timeId = setInterval(function () {
         if ($btn.cding > 1) {
-          $btn.html(`剩余 ${--$btn.cding} 秒`)
+          $btn.html(`剩余 ${--$btn.cding} 秒`);
         } else {
-          clearInterval(timeId)
-          delete $btn.cding
+          clearInterval(timeId);
+          delete $btn.cding;
           // $btn.html(oldLabel)
           // $btn.removeClass('weui-btn_disabled')
-          setBtnDisabled($btn, false)
+          setBtnDisabled($btn, false);
         }
-      }, 1000)
-      if (callback) callback(data)
-    })
-  })
+      }, 1000);
+      if (callback) callback(data);
+    });
+  });
 }
 
 export function gtcaptcha(xy, tj) {
   $.ajax({
-    url: "/libs/gtcaptcha/create",
-    type: "get",
-    dataType: "json",
-    success: function(data) {
-      initGeetest({
-        gt: data.gt,
-        challenge: data.challenge,
-        offline: !data.success, // 表示用户后台检测极验服务器是否宕机
-        new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
+    url: '/libs/gtcaptcha/create',
+    type: 'get',
+    dataType: 'json',
+    success: function (data) {
+      initGeetest(
+        {
+          gt: data.gt,
+          challenge: data.challenge,
+          offline: !data.success, // 表示用户后台检测极验服务器是否宕机
+          new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
 
-        product: "bind", // 产品形式，包括：float，popup，bind
-        width: "300px"
-      }, function handler(captchaObj) {
-        captchaObj.onReady(function() {
-          $("#wait").hide();
+          product: 'bind', // 产品形式，包括：float，popup，bind
+          width: '300px',
+        },
+        function handler(captchaObj) {
+          captchaObj.onReady(function () {
+            $('#wait').hide();
 
-          $('#form').find('.submit').click(function(evt) {
-            evt.preventDefault()
-            //前端表单校验
-            xy(captchaObj)
-          })
-
-        })
-        captchaObj.onSuccess(function() {
-          var vcode = captchaObj.getValidate();
-          if (!vcode) {
-            return Toast.info('请完成验证');
-          }
-          tj(vcode) //请求
-        });
-
-      });
-    }
+            $('#form')
+              .find('.submit')
+              .click(function (evt) {
+                evt.preventDefault();
+                //前端表单校验
+                xy(captchaObj);
+              });
+          });
+          captchaObj.onSuccess(function () {
+            var vcode = captchaObj.getValidate();
+            if (!vcode) {
+              return Toast.info('请完成验证');
+            }
+            tj(vcode); //请求
+          });
+        }
+      );
+    },
   });
 }
 
 //判断是否是微信环境
-export let weChat = (function() {
-  return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1
+export let weChat = (function () {
+  return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1;
 })();
 
 //判断是否是移动端环境
-export let mobileTerminal = (function() {
-  return /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)
+export let mobileTerminal = (function () {
+  return /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent);
 })();
-
