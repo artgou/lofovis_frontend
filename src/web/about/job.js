@@ -29,29 +29,19 @@ $(function () {
     if (!email) {
       return layer.msg('请输入Email');
     }
-    const data = new FormData();
-    data.append('position', position);
-    data.append('status', status);
-    data.append('name', name);
-    data.append('contact', contact);
-    data.append('email', email);
+    const reqData = new FormData();
+    reqData.append('position', position);
+    reqData.append('status', status);
+    reqData.append('name', name);
+    reqData.append('contact', contact);
+    reqData.append('email', email);
     const fileList = getFileList();
     if (fileList && fileList.length > 0) {
       for (let i = 0; i < fileList.length; i++) {
-        data.append('file_' + i, fileList[i]);
+        reqData.append('file_' + i, fileList[i]);
       }
     }
-    // layer.open({
-    //   title: '在线调试',
-    //   content: '可以填写任意的layer代码',
-    // });
-    Ajax('POST', `/web/about/job`, data, ({ errno, errmsg, data }) => {
-      if (errno === 0) {
-        Alert.success('数据提交成功', null, ['确定'], (btnIndex) => {
-          window.location.href = data.backurl || '/';
-        });
-      }
-    });
+    Ajax('POST', `/web/about/job`, reqData, ({ errno, errmsg, data }) => {});
     return false;
   }
 
