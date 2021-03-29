@@ -1,3 +1,7 @@
+export function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 /**
  * 去除左右两边的空格
  * @param str
@@ -68,9 +72,8 @@ export function changeURLParam(url, key, val) {
 }
 
 // 判断是否为手机号
-export function isMobileNo(pone) {
-  const reg = /^[1][0-9]{10}$/;
-  return reg.test(pone);
+export function isMobileNo(mobile) {
+  return /^[1][0-9]{10}$/.test(mobile);
 }
 
 // 判断是否为电话号码
@@ -92,6 +95,12 @@ export function isMobilePhone(mobile, evt) {
   return true;
 }
 
+// 是否邮箱
+export function isEmail(str) {
+  let pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+  return pattern.test(str);
+}
+
 const checkRespData = (retData, success = true) => {
   if (retData && retData.okmsg) {
     if (retData.backurl) {
@@ -105,12 +114,15 @@ const checkRespData = (retData, success = true) => {
     const funcs = {};
     if (btnArr && btnArr.length) {
       for (let i = 0; i < btnArr.length; i++) {
-        funcs['btn' + (i + 1)] = function () {
-          console.log(i, urlArr[i]);
-          if (urlArr[i]) {
-            window.location.href = urlArr[i];
-          }
-        };
+        if (urlArr[i]) {
+          funcs['btn' + (i + 1)] = function () {
+            if (urlArr[i] === 'refresh') {
+              window.location.href = window.location.href;
+            } else {
+              window.location.href = urlArr[i];
+            }
+          };
+        }
       }
     }
     const args = Object.assign(
@@ -202,7 +214,10 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
         if (errmsg && errmsg.okmsg) {
           checkRespData(errmsg, false);
         } else {
-          layer.msg(errmsg || '未知错误!');
+          // layer.msg(errmsg || '未知错误!');
+          layer.open({
+            content: errmsg || '未知错误!',
+          });
         }
       }
       if (onSuccess) {

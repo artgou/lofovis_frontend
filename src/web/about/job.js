@@ -1,7 +1,7 @@
 require('../_js/common');
 require('./job.less');
 const { initUploader, getFileList } = require('../_js/upload');
-const { Trim, isMobilePhone, Ajax, Toast, Alert } = require('../_js/tools');
+const { Int, Trim, Ajax, isEmail } = require('../_js/tools');
 
 $(function () {
   initUploader(5);
@@ -9,12 +9,12 @@ $(function () {
   // 提交数据
   function onSubmitFrom(evt) {
     evt.preventDefault();
-    let position = Trim($('#position').val());
-    if (!position) {
+    let position_id = Int($('#position_id').val());
+    if (!position_id) {
       return layer.msg('请选择应聘职位');
     }
-    let status = Trim($('#status').val());
-    if (!status) {
+    let job_status = Int($('#job_status').val());
+    if (!job_status) {
       return layer.msg('请选择目前状态');
     }
     let name = Trim($('#name').val());
@@ -28,10 +28,12 @@ $(function () {
     let email = Trim($('#email').val());
     if (!email) {
       return layer.msg('请输入Email');
+    } else if (!isEmail(email)) {
+      return layer.msg('请输入正确的邮箱地址');
     }
     const reqData = new FormData();
-    reqData.append('position', position);
-    reqData.append('status', status);
+    reqData.append('position', position_id);
+    reqData.append('job_status', job_status);
     reqData.append('name', name);
     reqData.append('contact', contact);
     reqData.append('email', email);

@@ -1,3 +1,5 @@
+const { Ajax } = require('./tools');
+
 $(function () {
   // 设置懒加载并fix首屏
   $('img.lazy').lazyload({ effect: 'fadeIn' });
@@ -65,7 +67,13 @@ $(function () {
   });
 
   $('#btnExit').click(function () {
-    window.location.href = '/';
+    layer.confirm('确定要退出管理吗？', function (index) {
+      Ajax('POST', `/web/manage/logout`, null, (ret) => {
+        if (ret.errno === 0) {
+          // window.location.href = window.location.href;
+        }
+      });
+    });
   });
 
   $('textarea').on('input', function () {

@@ -9,11 +9,11 @@
 <test>
   {% set desc = '有竞争力的薪资和弹性工作制<br>国家法定假日 / 免费午餐供应<br>全IMAC平台 / 轻松的创意氛围' %}
   {% set fieldsList = [
-  { name: 'position', type: 'select', label: '应聘职位', required: true, placeholder: '点击选择职位', options: [
+  { name: 'position_id', type: 'select', label: '应聘职位', required: true, placeholder: '点击选择职位', options: [
   {label: '中', value: 1},
   {label: '2', value: 2}
   ]},
-  { name: 'status', type: 'select', label: '目前状态', required: true, placeholder: '点击选择状态', options: [ { value: '1',
+  { name: 'job_status', type: 'select', label: '目前状态', required: true, placeholder: '点击选择状态', options: [ { value: '1',
   label: '在职' }, { value: '2', label: '离职' } ]},
   { name: 'name', type: 'text', label: '姓名', required: true, placeholder: '点击选择状态'},
   { name: 'contact', type: 'text', label: '联系电话/微信', required: true},

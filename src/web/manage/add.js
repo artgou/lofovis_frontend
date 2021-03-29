@@ -1,6 +1,6 @@
 require('../_js/common');
+require('./add.less');
 const { initUploader, getFileList } = require('../_js/upload');
-require('./post.less');
 
 $(function () {
   initUploader(7);
