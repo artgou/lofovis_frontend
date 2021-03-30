@@ -11,7 +11,7 @@
       {% endfor %}
       </select>
       {% elseif item.type === 'upload' %}
-      <div class="upload-list">
+      <div class="upload-list" data-max="{{item.max}}">
         <div class="upload-item upload-file" id="upload">
           <input type="file" accept="image/*" multiple />
           <i class="icon icon-plus"></i>

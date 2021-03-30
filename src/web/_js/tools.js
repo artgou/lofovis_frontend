@@ -127,6 +127,7 @@ const checkRespData = (retData, success = true) => {
     }
     const args = Object.assign(
       {
+        title: '系统提示',
         closeBtn: 0,
         btn: btnArr,
       },
@@ -217,6 +218,7 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
           // layer.msg(errmsg || '未知错误!');
           layer.open({
             content: errmsg || '未知错误!',
+            title: '系统提示',
           });
         }
       }

@@ -67,7 +67,7 @@ $(function () {
   });
 
   $('#btnExit').click(function () {
-    layer.confirm('确定要退出管理吗？', function (index) {
+    layer.confirm('确定要退出管理吗？', { title: '系统提示' }, function (index) {
       Ajax('POST', `/web/manage/logout`, null, (ret) => {
         if (ret.errno === 0) {
           // window.location.href = window.location.href;

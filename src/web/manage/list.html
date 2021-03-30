@@ -6,8 +6,8 @@
 {% set isLogined = true %}
 
 <test>
-  {% set newsList = [
-  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: true},
+  {% set articleList = [
+  {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: true, link:'#'},
   {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
   {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
   {id: 1, title: '文化 | 文章标题sa柘城村奇才奇才奇才奇才柘城奇才奇才', date: '2021-02-12', is_pc: false},
@@ -24,18 +24,18 @@
 <div class="manage navbar-gap list">
   <div class="list-tt">内容管理</div>
   <div class="list-bd">
-    {% for item in newsList %}
+    {% for item in articleList %}
     <div class="item">
       <div class="item-title">
-        <b>{{item.title | safe}}</b>
-        <i>2021-02-20</i>
+        <b><a href="{{item.link | safe}}" class="link">{{item.title | safe}}</a></b>
+        <i>{{item.date}}</i>
       </div>
       {% if item.is_pc %}
       <div class="item-btn item-btn-pc">
         PC
       </div>
       {% else %}
-      <div class="item-btn item-btn-del">
+      <div class="item-btn item-btn-del" data-id="{{item.id}}">
         <i class="icon icon-del"></i>
       </div>
       {% endif %}

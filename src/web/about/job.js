@@ -4,7 +4,8 @@ const { initUploader, getFileList } = require('../_js/upload');
 const { Int, Trim, Ajax, isEmail } = require('../_js/tools');
 
 $(function () {
-  initUploader(5);
+  const uploadMax = Int($('.upload-list').data('max')) || 10;
+  initUploader(uploadMax);
 
   // 提交数据
   function onSubmitFrom(evt) {
