@@ -8,6 +8,7 @@
 <test>
   {%
   set article = {
+  sn: 'snabcd',
   title: '并不是详细说明这个新这里原文中的说明与演示',
   content:
   '并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示并不是详细说明这个新属性的用法，这里主要是用它来完成背景条纹，来看看原文中的说明与演示',
@@ -22,6 +23,9 @@
   '/static/imgs/web/0/photo_1200.jpg',
   '/static/imgs/web/0/001_3.jpg',
   '/static/imgs/web/0/001_4.jpg'
+  ],
+  photoList0: [
+  '/static/imgs/web/0/photo.jpg'
   ]
 
   }
@@ -30,6 +34,11 @@
 
 {% block pageBody %}
 <div class="navbar-gap article detail detail-image">
+  {% if article.audio %}
+  <audio class="audio" src="{{article.audio | safe}}" loop autoplay="autoplay" style="display: none;">
+    当前浏览器不支持直接播放音频
+  </audio>
+  {% endif %}
 
   <div class="swiper-container detail-swiper swiper-outline">
     <div class="swiper-wrapper">
@@ -49,17 +58,19 @@
             {% if article.audio %}
             <i class="icon icon-volume events" id="btnVolume"></i>
             {% endif %}
-            <i class="icon icon-image panel-left"></i>
-            <div class="panel-center">
+            <i class="icon icon-image detail-panel-left"></i>
+            <div class="detail-panel-center events btn-swiper-next">
+              {% if article.content %}
               <i class="icon icon-arrow_bottom"></i>
-              <b>文章标题</b>
+              {% endif %}
+              <b>{{article.title}}</b>
             </div>
-            <ul class="panel-right">
+            <ul class="detail-panel-right">
               <li>
                 <i class="icon icon-view"></i>
                 <b>{{article.views}}</b>
               </li>
-              <li>
+              <li class="events btn-fav" data-sn="{{article.sn}}">
                 <i class="icon icon-fav"></i>
                 <b>{{article.favs}}</b>
               </li>
@@ -112,15 +123,17 @@
             <i class="icon icon-volume events" id="btnVolume"></i>
             <i class="icon icon-play2 detail-panel-left"></i>
             <div class="events detail-panel-center btn-swiper-next">
+              {% if article.content %}
               <i class="icon icon-arrow_bottom"></i>
-              <b>文章标题</b>
+              {% endif %}
+              <b>{{article.title}}</b>
             </div>
             <ul class="detail-panel-right">
               <li>
                 <i class="icon icon-view"></i>
                 <b>{{article.views}}</b>
               </li>
-              <li class="events" id="btnFav">
+              <li class="events btn-fav">
                 <i class="icon icon-fav"></i>
                 <b>{{article.favs}}</b>
               </li>
@@ -133,6 +146,7 @@
         </div>
         {% endif %}
       </div>
+      {% if article.content %}
       <div class="swiper-slide">
         <div class="swiper-scroll">
           <div class="btn-swiper-pre">
@@ -150,7 +164,7 @@
             </h1>
             <ul class="detail-icons">
               <li><i class="icon icon-view"></i> <b>{{article.views}}</b></li>
-              <li><i class="icon icon-fav"></i> <b>{{article.favs}}</b></li>
+              <li class="btn-fav" data-sn="{{article.sn}}"><i class="icon icon-fav"></i> <b>{{article.favs}}</b></li>
               <li><i class="icon icon-user"></i> <b>{{article.author}}</b></li>
             </ul>
             {% if article.content %}
@@ -161,6 +175,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 </div>

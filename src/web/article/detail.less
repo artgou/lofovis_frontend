@@ -21,7 +21,7 @@
       font-size: 30px;
       color: #aaa;
       text-align: center;
-      padding-bottom: 40px;
+      padding: 20px 0 40px 0;
     }
     &-icons {
       .flex();
@@ -148,12 +148,17 @@
 
     &-left {
       padding-bottom: 10px;
+      // margin-bottom: 5px;
     }
     &-center {
       .flex(column);
       .icon {
         font-size: 120px;
-        height: 150px;
+      }
+      max-width: 60%;
+      b {
+        .ellipsis();
+        width: 100%;
       }
     }
     &-right {

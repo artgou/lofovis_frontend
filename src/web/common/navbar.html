@@ -57,12 +57,13 @@
 {% endif %}
 
 {% if hasSwiper and hasNewsSwiper and swiperList %}
-<div class="swiper-container page-swiper {{'' if navIsAutoVisible else 'always-menu'}}">
+<div class="page-offset swiper-container page-swiper {{'' if navIsAutoVisible else 'always-menu'}}">
   <div class="swiper-wrapper">
     {% for item in swiperList %}
-    <div class="swiper-slide">
+    <a href="{{item.link if item.link | safe else '#'}}" class="swiper-slide">
       <img class="swiper-lazy" data-src="{{item.img | safe}}" />
       <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+      {% if item.date %}
       <div class="text">
         <div class="date">
           {{item.date | safe}}
@@ -71,9 +72,12 @@
           {{item.cate}}
         </div>
       </div>
-    </div>
+      {% endif %}
+    </a>
     {% endfor %}
   </div>
+  {% if swiperList.length > 1 %}
   <div class="swiper-pagination"></div>
+  {% endif %}
 </div>
 {% endif %}

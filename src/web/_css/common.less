@@ -44,6 +44,10 @@ test {
   margin: 0 auto;
   // max-width: @_respWidth;
 
+  &-offset-yes {
+    transform: translate(-140px);
+  }
+
   &-form {
     padding: 30px 50px;
     text-align: left;
@@ -494,10 +498,6 @@ a.link {
 .article {
   &-list {
     padding-bottom: @_menuPadding;
-
-    &-offset {
-      transform: translate(-80px);
-    }
   }
   &-card {
     margin: @_menuPadding @_menuPadding 0;
@@ -513,7 +513,7 @@ a.link {
     &:active,
     &:hover {
       color: #333;
-      opacity: 0.6;
+      // opacity: 0.6;
     }
   }
 
@@ -536,7 +536,7 @@ a.link {
     }
     &-author {
       text-align: center;
-      margin-top: -20px;
+      margin-bottom: 15px;
     }
     &-icon {
       flex: 1;
@@ -558,9 +558,11 @@ a.link {
       }
     }
     &-date {
-      margin: -15px 0 10px 0;
+      margin: 0px 0 10px 0;
       font-size: 28px;
-      letter-spacing: 5px;
+      padding: 3px 0;
+      text-align: justify;
+      text-align-last: justify;
     }
   }
 
@@ -654,14 +656,14 @@ a.link {
     &:active,
     &:hover {
       color: #fff;
-      opacity: 0.6;
+      // opacity: 0.6;
     }
   }
 
   &-icon {
     position: absolute;
     left: 50px;
-    bottom: 120px;
+    bottom: 140px;
     .icon {
       font-size: 100px;
     }
@@ -670,29 +672,40 @@ a.link {
     text-align: left;
     position: absolute;
     left: 50px;
-    bottom: 20px;
+    bottom: 30px;
     font-family: enfont;
+    // width: 160px;
   }
   &-name {
     display: flex;
     align-items: center;
     margin-top: -10px;
-    font-size: 40px;
+    width: 100%;
 
     .icon {
       font-size: 35px;
       padding: 0 5px 10px 0;
+      width: 40px;
+    }
+
+    b {
+      text-align: justify;
+      text-align-last: justify;
+      font-size: 40px;
     }
   }
   &-date {
-    margin: -10px 0 10px 0;
+    margin: 0px 0 10px 0;
     font-size: 30px;
-    letter-spacing: 4.5px;
+    // letter-spacing: -1px;
+    padding-left: 5px;
+    text-align: justify;
+    text-align-last: justify;
   }
   &-title {
     position: absolute;
     right: 25px;
-    bottom: 30px;
+    bottom: 40px;
     color: #fff;
     font-size: 40px;
     text-align: right;
@@ -707,6 +720,11 @@ a.link {
   &-btn a {
     border-radius: 4px !important;
   }
+}
+
+.pullload-bottom {
+  padding-bottom: 30px !important;
+  font-size: 24px;
 }
 
 @media (max-width: @_respWidth) {

@@ -1,6 +1,7 @@
 @import '../_css/common.less';
 @import '../_css/fn.less';
 @import '../_css/var.less';
+@import '../_css/number.less';
 
 .home {
   &-stats {
@@ -45,30 +46,57 @@
       display: none;
     }
     &:first-child i {
-      top: 20px;
+      // top: 20px;
+      right: -40px;
     }
   }
   &-num {
     font-family: enfont;
-    height: 120px;
+    height: 90px;
     line-height: 1;
     margin: 20px 0;
-    b {
+    position: relative;
+
+    .stats-nums {
       font-size: 140px;
+      // height: 0px;
+      height: 90px;
+      overflow: hidden;
+
+      .rollnums {
+        // height: 100px;
+      }
+
+      .rollnums__col {
+        float: left;
+        list-style: none;
+        position: relative;
+        overflow: hidden;
+        width: 35px;
+        // height: 100px;
+        line-height: 1.1;
+        // margin: 0px 3px;
+        font-family: unset;
+        text-align: center;
+        font-size: 100px;
+        color: #fff;
+        background: transparent;
+      }
     }
 
     i {
       position: absolute;
-      top: 15px;
+      top: -10px;
+      right: -20px;
       font-style: normal;
       font-size: 30px;
     }
   }
   &-desc {
     position: absolute;
-    top: 145px;
+    top: 125px;
     opacity: 0.7;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.2;
     text-align: center;
   }

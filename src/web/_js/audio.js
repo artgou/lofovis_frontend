@@ -1,12 +1,13 @@
 export function initAudio() {
-  var playerAudio = $('.aplayer audio');
-  var playPause = $('.aplayer .play-pause');
-  var timeCurrent = $('.aplayer .timebar-current');
-  var timeTotal = $('.aplayer .timebar-total');
-  var progressBar = $('.aplayer .timebar .progress-bar');
-  var iconVolume = $('.aplayer .icon-volume');
+  var playerAudio = $('audio');
+  var playPause = $('.play-pause');
+  var timeCurrent = $('.timebar-current');
+  var timeTotal = $('.timebar-total');
+  var progressBar = $('.timebar .progress-bar');
+  var iconVolume = $('.icon-volume');
   var audio = playerAudio[0];
   audio.load();
+  // 默认静音自动播放
   playPause.on('click', function () {
     checkPlayControl();
   });
@@ -37,13 +38,14 @@ export function initAudio() {
       audio.muted = true;
       iconVolume.removeClass('icon-volume').addClass('icon-volume-off');
     } else {
+      audio.play();
       audio.muted = false;
       iconVolume.removeClass('icon-volume-off').addClass('icon-volume');
     }
     e.stopPropagation();
   });
 
-  $('.aplayer .timebar .progress').mousedown(function (e) {
+  $('.timebar .progress').mousedown(function (e) {
     e = e || window.event;
     e.stopPropagation();
     e.preventDefault();
@@ -52,7 +54,7 @@ export function initAudio() {
   var updateTimeBar = function (x) {
     var maxtimeTotal = audio.duration; //Video
     var positions = x - progressBar.offset().left; //Click pos
-    var percentage = (100 * positions) / $('.aplayer .timebar .progress').width();
+    var percentage = (100 * positions) / $('.timebar .progress').width();
     //Check within range
     if (percentage > 100) {
       percentage = 100;
@@ -83,6 +85,17 @@ export function initAudio() {
     playPause.removeClass('icon-replay').removeClass('icon-pause').addClass('icon-play').fadeIn();
   }
 
+  // 设置静音
+  function setMute(val) {
+    if (val) {
+      audio.muted = true;
+      iconVolume.removeClass('icon-volume').addClass('icon-volume-off');
+    } else {
+      audio.muted = false;
+      iconVolume.removeClass('icon-volume-off').addClass('icon-volume');
+    }
+  }
+
   //秒转时间
   function formatSeconds(value) {
     value = parseInt(value);
@@ -97,4 +110,6 @@ export function initAudio() {
     }
     return str;
   }
+
+  return { setMute, audio };
 }

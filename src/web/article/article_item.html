@@ -1,0 +1,63 @@
+{% if item.isPhoto or item.isVideo %}
+<a href="{{item.link | safe}}" class="{{'video' if item.isVideo else 'photo'}}-card" data-scroll-reveal>
+  {% if item.isPhoto %}
+  <img src="{{item.image_cover | safe}}" />
+  {% else %}
+  <img src="{{item.video_cover | safe}}" />
+  {% endif %}
+  <div class="photo-title">
+    {{item.title | safe}}
+  </div>
+  <div class="photo-icon">
+    <i class="icon icon-{{'play2' if item.isVideo else 'image'}}"></i>
+  </div>
+  <div class="photo-author">
+    <div class="photo-name">
+      <i class="icon icon-user"></i>
+      <b>{{item.author | safe}}</b>
+    </div>
+    <div class="photo-date between">
+      {{item.date | safe}}
+    </div>
+  </div>
+</a>
+{% else %}
+<a href="{{item.link | safe}}" class="article-card" data-scroll-reveal>
+  <div class="article-info">
+    <div class="article-info-icon">
+      <div class="article-info-cate">
+        {{item.category | safe}}
+      </div>
+    </div>
+    <div class="article-info-author">
+      <div class="article-info-name">
+        <i class="icon icon-user"></i>
+        <b>{{item.author | safe}}</b>
+      </div>
+      <div class="article-info-date between">
+        {{item.date | safe}}
+      </div>
+    </div>
+  </div>
+  {% if item.img %}
+  <div class="article-img">
+    <img src="{{item.img | safe}}" />
+    <div class="article-img-title">
+      {{item.title | safe}}
+    </div>
+  </div>
+  {% else %}
+  <div class="article-text">
+    <div class="article-text-title">
+      {{item.title | safe}}
+    </div>
+    <div class="article-text-content">
+      {{item.digest | safe}}
+    </div>
+  </div>
+  {% endif %}
+  {% if item.is_top %}
+  <div class="article-top">TOP</div>
+  {% endif %}
+</a>
+{% endif %}

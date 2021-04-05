@@ -1,5 +1,8 @@
 require('./detail.less');
+require('../_js/common');
 const { initVideo } = require('../_js/video.js');
+const { initAudio } = require('../_js/audio.js');
+
 $(function () {
   var outlineSwiper = new Swiper('.swiper-outline', {
     direction: 'vertical',
@@ -12,6 +15,15 @@ $(function () {
 
   var inlineSwiper = new Swiper('.swiper-inline', {
     direction: 'vertical',
+    // effect: 'fade',
+    lazy: {
+      loadPrevNext: true,
+    },
+    autoplay: {
+      delay: 3000,
+      stopOnLastSlide: false,
+      disableOnInteraction: false,
+    },
     noSwipingClass: 'swiper-scroll',
     pagination: {
       el: '.swiper-pagination',
@@ -25,7 +37,8 @@ $(function () {
     $('.btn-swiper-next').click(doPause);
   }
 
-  $('#btnFav').on('click', function (e) {
-    // setMute(false);
-  });
+  if ($('.audio').length) {
+    const { setMute } = initAudio();
+    setMute(true);
+  }
 });
