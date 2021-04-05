@@ -31,12 +31,12 @@ $(function () {
     // 文件
     const fileList = getFileList();
     const typeNames = {
-      1: {
+      2: {
         label: '图片',
         min: 1,
         max: 6,
       },
-      2: {
+      3: {
         label: '视频',
         min: 1,
         max: 1,
@@ -47,7 +47,7 @@ $(function () {
     if (count < item.min) {
       return layer.msg(`必须上传 ${item.min} 个${item.label}`);
     } else if (count > item.max) {
-      return layer.msg(`最允许上传 ${item.max} 个${item.label}`);
+      return layer.msg(`最多允许上传 ${item.max} 个${item.label}`);
     }
     for (let i = 0; i < count; i++) {
       reqData.append('file_' + i, fileList[i]);
