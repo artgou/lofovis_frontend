@@ -10,7 +10,7 @@ $(function () {
   if (window.Swiper) {
     new Swiper('.swiper-container.page-swiper', {
       direction: 'vertical',
-      // effect: 'fade',
+      effect: 'fade',
       lazy: {
         loadPrevNext: true,
       },

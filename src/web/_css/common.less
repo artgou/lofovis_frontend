@@ -190,7 +190,7 @@ a.link {
     justify-content: flex-start;
     margin-left: @_menuPadding;
     .icon {
-      font-size: 180px;
+      font-size: 120px;
       padding-top: 20px;
     }
 
@@ -208,9 +208,9 @@ a.link {
       align-items: flex-end;
       justify-content: flex-end;
     }
-    padding: 20px 0 0 40px;
+    padding: 0 0 0 40px;
 
-    font-size: 30px;
+    font-size: 40px;
     color: #333;
 
     &:last-child {
@@ -503,7 +503,7 @@ a.link {
     margin: @_menuPadding @_menuPadding 0;
     height: 310px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 24px;
     overflow: hidden;
     display: flex;
     color: #333;
@@ -528,9 +528,9 @@ a.link {
     &-cate {
       border: 2px solid #333;
       border-radius: 100%;
-      width: 120px;
-      height: 120px;
-      line-height: 125px;
+      width: 140px;
+      height: 140px;
+      line-height: 140px;
       text-align: center;
       font-size: 30px;
     }
@@ -581,7 +581,7 @@ a.link {
       left: 20px;
       bottom: 15px;
       color: #fff;
-      font-size: 40px;
+      font-size: 36px;
       .ellipsis(90%);
     }
   }
@@ -641,11 +641,12 @@ a.link {
   &-card {
     margin: @_menuPadding @_menuPadding 0;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 24px;
     overflow: hidden;
     display: flex;
     position: relative;
     color: #fff;
+    box-shadow: @_cardShadow;
 
     img {
       width: 100%;
@@ -707,7 +708,7 @@ a.link {
     right: 25px;
     bottom: 40px;
     color: #fff;
-    font-size: 40px;
+    font-size: 36px;
     text-align: right;
     .ellipsis(60%);
   }
