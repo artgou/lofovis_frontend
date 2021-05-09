@@ -19,7 +19,7 @@ export function initVideo() {
     doPlay();
     showPlayerBar(false);
   }
-  autoPlayByMuted();
+  // autoPlayByMuted();
   volumeControl(null, 60);
   videoContentBg.on('click', function () {
     setPlayInline(true);
@@ -237,7 +237,7 @@ export function initVideo() {
     video.isPlaying = false;
     video.pause();
     videoContentBg.show();
-    playerVideo.hide();
+    // playerVideo.hide();
     playerIcon.fadeIn();
     playPause.removeClass('icon-replay').removeClass('icon-pause').addClass('icon-play').fadeIn();
   }

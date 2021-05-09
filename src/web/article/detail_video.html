@@ -7,7 +7,7 @@
 
 <test>
   {%
-  set article = {
+  set article0 = {
   sn: 'snabcd',
   title: '并不是详细说明这个新这里原文中的说明与演示',
   content:
@@ -18,6 +18,54 @@
   video: 'http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v'
   }
   %}
+  {%
+  set article = {
+  id: 57,
+  sort: 0,
+  sn: 'ABrQ4QF7Dy',
+  title: '奥园·京誉府项目全线主体封顶，“家”境可期！灵风助力节点时效传播',
+  author: 'Fengbox',
+  category_id: 1,
+  category: '新闻',
+  type: 3,
+  img: '',
+  image_cover: '',
+  video: 'https://res.lofovis.com/web_article/20210509/16205688674684.mp4',
+  video_cover: 'https://res.lofovis.com/web_article/20210509/16205688586146.jpg',
+  video_style: 0,
+  audio: '',
+  audio_tips: '',
+  autoplay: 0,
+  is_swiper: 1,
+  views: 41,
+  favs: 1,
+  is_pc: 1,
+  is_top: 0,
+  digest: '<p>一座城市，彰显一个时代的精神；一座地标，成就一座城市的传奇；一座建筑，承载一种生活的脉搏。</p>',
+  content: '<p>2020年5月17日周日上午10:58分，伴随着楼王最后一方混凝土浇筑到位，奥园&middot;京誉府项目主体施工全部完成，喜封金顶！</p>\n' +
+  '<p>
+    这次封顶的意义不同以往，是全体施工人员及相关单位共同付出巨大努力的结果。在疫情期间积极线上开展工作多次优化施工方案。开工后不但要做好疫情防护工作，还要与时间赛跑。最终在各方努力下，如期按照疫情前的工程计划完成了全部封顶，为业主能按时入住打下了良好的基础。
+  </p>\n' +
+  '<figure><video src="https://res.lofovis.com/wp/2020/05/jing-yu-fu-liang-zi-2020050515-30-10.mp4"
+      poster="https://res.lofovis.com/wp/2020/05/DJI_0041-1.jpg" preload="auto" loop="loop" controls="controls"
+      width="300" height="150"></video></figure>\n' +
+  '<p style="font-size: 12px;">视频6MB请在WIFI下观看</p>\n' +
+  '<p>自2019年开盘以来，奥园&middot;京誉府作为首都后花园，深受北京和张家口人民的期待及喜爱，成为2019年下花园区域销售冠军，持续飘红的数据表证明了奥园&middot;京誉府的实力与魅力。</p>\n' +
+  '<p>在历经过无数个日夜的精细打磨之后，今日，伴随着热闹喜庆的礼炮声，楼王最后一方混凝土的浇筑到位，项目所有人员共同见证着这一重要时刻，看着自己的辛勤耕耘结出了累累硕果，大家的欣喜之情溢于言表。</p>\n' +
+  '<p>这标志着奥园&middot;京誉府建设阶段工作实现了关键性的一步，离竣工交付又近了一步！预示着业主离梦想中的家又近了一步！</p>\n' +
+  '<figure><img src="https://res.lofovis.com/wp/2020/05/P1000692.jpg" /></figure>\n' +
+  '<figure><img src="https://res.lofovis.com/wp/2020/05/P1000681-1.jpg" /></figure>\n' +
+  '<figure><img src="https://res.lofovis.com/wp/2020/05/P1000666-1.jpg" /></figure>\n' +
+  '<figure><img src="https://res.lofovis.com/wp/2020/05/P1000697-1.jpg" /></figure>\n' +
+  '<figure><img src="https://res.lofovis.com/wp/2020/05/DJI_0040-1.jpg" /></figure>\n' +
+  '<figure><img src="https://res.lofovis.com/wp/2020/05/DJI_0041-1.jpg" /></figure>',
+  add_time: 1590055388,
+  add_adminer_id: 0,
+  edit_time: 1620568875,
+  edit_adminer_id: 1,
+  status: 1
+  }
+  %}
 </test>
 
 {% block pageBody %}
@@ -26,8 +74,9 @@
     <div class="vplayer">
       <div class="vplayer-content">
         <div class="vplayer-content-bg"></div>
-        <video class="video" title="{{article.title}}" muted="true" autoplay playsinline webkit-playsinline
-          x5-video-player-type="h5" x5-video-orientation="landscape" controlslist="nodownload" disablePictureInPicture>
+        <video class="video" title="{{article.title}}" poster="{{article.video_cover | safe}}" preload="auto"
+          loop="loop" playsinline webkit-playsinline x5-video-player-type="h5" x5-video-orientation="landscape"
+          controlslist="nodownload" disablePictureInPicture>
           <source src="{{article.video | safe}}" type="video/mp4">
           </source>
           当前浏览器不支持直接播放视频
