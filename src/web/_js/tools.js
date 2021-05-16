@@ -154,8 +154,14 @@ const checkRespData = (retData, success = true) => {
 export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, button = null) {
   method = method.toLowerCase();
   var dataType = 'json';
-  if (ajaxOptions && ajaxOptions.dataType) {
-    dataType = ajaxOptions.dataType.toLowerCase();
+  let withCredentials = true;
+  if (ajaxOptions) {
+    if (ajaxOptions.dataType) {
+      dataType = ajaxOptions.dataType.toLowerCase();
+    }
+    if (ajaxOptions.withCredentials !== undefined) {
+      withCredentials = ajaxOptions.withCredentials;
+    }
   }
   // 添加当前页地址，便于登录后返回
   const backurl = window.location.href;
@@ -171,7 +177,7 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
     cache: false,
     timeout: 180000, // ms
     xhrFields: {
-      withCredentials: true,
+      withCredentials,
     },
     traditional: true,
     beforeSend: (req) => {
@@ -202,24 +208,26 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
       if (!errmsg && typeof retData == 'string') {
         errmsg = retData;
       }
-      if (errno == 0) {
-        if (errmsg === 'modal' && showModal) {
-          return showModal(retData.url, retData.html, retData.title, retData.btnArr, retData.modalOps);
-        }
-        if (errmsg && errmsg !== 'NOMSG') {
-          layer.msg(errmsg);
+      if (ret.errno !== undefined) {
+        if (errno == 0) {
+          if (errmsg === 'modal' && showModal) {
+            return showModal(retData.url, retData.html, retData.title, retData.btnArr, retData.modalOps);
+          }
+          if (errmsg && errmsg !== 'NOMSG') {
+            layer.msg(errmsg);
+          } else {
+            checkRespData(retData);
+          }
         } else {
-          checkRespData(retData);
-        }
-      } else {
-        if (errmsg && errmsg.okmsg) {
-          checkRespData(errmsg, false);
-        } else {
-          // layer.msg(errmsg || '未知错误!');
-          layer.open({
-            content: errmsg || '未知错误!',
-            title: '系统提示',
-          });
+          if (errmsg && errmsg.okmsg) {
+            checkRespData(errmsg, false);
+          } else {
+            // layer.msg(errmsg || '未知错误!');
+            layer.open({
+              content: errmsg || '未知错误!',
+              title: '系统提示',
+            });
+          }
         }
       }
       if (onSuccess) {
@@ -233,7 +241,7 @@ export function Ajax(method, url, data, onSuccess, onError, ajaxOptions = null, 
         errmsg = res.statusText + '<br>' + url;
       } else if (res.responseJSON) {
         errno = res.responseJSON.errno;
-        errmsg = res.responseJSON.errmsg;
+        errmsg = res.responseJSON.errmsg || res.responseJSON.error;
       } else if (res.responseText) {
         errmsg = res.responseText;
       } else if (error) {

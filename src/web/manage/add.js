@@ -1,6 +1,6 @@
 require('../_js/common');
 require('./add.less');
-const { initUploader, getFileList } = require('../_js/upload');
+const { initUploader, getFileList, uploadToQiniu } = require('../_js/upload');
 const { Int, Trim, Ajax, isEmail } = require('../_js/tools');
 
 $(function () {
@@ -8,7 +8,7 @@ $(function () {
   initUploader(uploadMax);
 
   // 提交数据
-  function onSubmitFrom(evt) {
+  async function onSubmitFrom(evt) {
     evt.preventDefault();
     let type = Int($('#type').val());
     if (!type) {
@@ -22,12 +22,12 @@ $(function () {
     if (!title) {
       return layer.msg('请输入文章标题');
     }
-    let contact = Trim($('#contact').val());
-    const reqData = new FormData();
-    reqData.append('type', type);
-    reqData.append('category_id', category_id);
-    reqData.append('title', title);
-    reqData.append('contact', contact);
+    let content = Trim($('#content').val());
+    // const reqData = new FormData();
+    // reqData.append('type', type);
+    // reqData.append('category_id', category_id);
+    // reqData.append('title', title);
+    // reqData.append('content', content);
     // 文件
     const fileList = getFileList();
     const typeNames = {
@@ -49,13 +49,21 @@ $(function () {
     } else if (count > item.max) {
       return layer.msg(`最多允许上传 ${item.max} 个${item.label}`);
     }
-    for (let i = 0; i < count; i++) {
-      reqData.append('file_' + i, fileList[i]);
-    }
+    // for (let i = 0; i < count; i++) {
+    //   reqData.append('file_' + i, fileList[i]);
+    // }
+    // reqData.append('files', files);
+    const files = await uploadToQiniu('web_article', fileList);
+    const reqData = {
+      type,
+      category_id,
+      title,
+      content,
+      files,
+    };
     Ajax('POST', `/web/manage/add`, reqData, ({ errno, errmsg, data }) => {});
     return false;
   }
-
   let $form = $('#form');
   $form.submit(onSubmitFrom);
   $form.find('#btnSubmit').click(onSubmitFrom);

@@ -1,3 +1,5 @@
+const { Ajax } = require('./tools');
+
 function readerFile(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -51,4 +53,66 @@ export function getFileList() {
     fileList.push(list[i].file);
   }
   return fileList;
+}
+
+/**
+ * 上传文件到七牛
+ * @param {*} folder
+ * @param {*} fileList
+ */
+export async function uploadToQiniu(folder, fileList) {
+  const loadingIndex = layer.load(1);
+  const pathList = [];
+  if (fileList && fileList.length) {
+    for (const file of fileList) {
+      const { path } = await uploadFileToQiniu(folder, file);
+      pathList.push(path);
+    }
+  }
+  layer.close(loadingIndex);
+  return pathList;
+}
+
+async function uploadFileToQiniu(folder, file, callback) {
+  return new Promise((resolve, reject) => {
+    const tokenParams = {
+      folder,
+      name: file.name,
+      temp: 0,
+    };
+    Ajax('POST', '/web/upload/token', tokenParams, (ret) => {
+      const msg = '云存token获取失败';
+      if (!ret || ret.errno !== 0) {
+        layer.msg(msg);
+        return;
+      }
+      const tokenRet = ret.data;
+      if (!tokenRet || !tokenRet.token) {
+        layer.msg(msg);
+        throw new Error(msg);
+      }
+      const data = {
+        key: tokenRet.key,
+        token: tokenRet.token,
+        file: file, // 七牛必须是file
+      };
+      const url = tokenRet.zone || 'http://upload.qiniup.com';
+      const qiniuDomain = tokenRet.domain;
+      const qiniuDomainKey = tokenRet.domain_key;
+      const options = {
+        withCredentials: false, // 七牛必须为false
+      };
+      const formData = new FormData();
+      Object.keys(data).map((key) => formData.append(key, data[key]));
+      function onLoadSuccess(res) {
+        const url = qiniuDomain + res.key;
+        const path = qiniuDomainKey + res.key;
+        resolve({ url, path, key: res.key });
+      }
+      function onLoadFail(res) {
+        reject();
+      }
+      Ajax('POST', url, formData, onLoadSuccess, onLoadFail, options);
+    });
+  });
 }

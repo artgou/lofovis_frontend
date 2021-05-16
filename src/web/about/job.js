@@ -1,6 +1,6 @@
 require('../_js/common');
 require('./job.less');
-const { initUploader, getFileList } = require('../_js/upload');
+const { initUploader, getFileList, uploadToQiniu } = require('../_js/upload');
 const { Int, Trim, Ajax, isEmail } = require('../_js/tools');
 
 $(function () {
@@ -8,7 +8,7 @@ $(function () {
   initUploader(uploadMax);
 
   // 提交数据
-  function onSubmitFrom(evt) {
+  async function onSubmitFrom(evt) {
     evt.preventDefault();
     let position_id = Int($('#position_id').val());
     if (!position_id) {
@@ -32,18 +32,28 @@ $(function () {
     } else if (!isEmail(email)) {
       return layer.msg('请输入正确的邮箱地址');
     }
-    const reqData = new FormData();
-    reqData.append('position_id', position_id);
-    reqData.append('job_status', job_status);
-    reqData.append('name', name);
-    reqData.append('contact', contact);
-    reqData.append('email', email);
+    // const reqData = new FormData();
+    // reqData.append('position_id', position_id);
+    // reqData.append('job_status', job_status);
+    // reqData.append('name', name);
+    // reqData.append('contact', contact);
+    // reqData.append('email', email);
     const fileList = getFileList();
-    if (fileList && fileList.length > 0) {
-      for (let i = 0; i < fileList.length; i++) {
-        reqData.append('file_' + i, fileList[i]);
-      }
-    }
+    // if (fileList && fileList.length > 0) {
+    //   for (let i = 0; i < fileList.length; i++) {
+    //     reqData.append('file_' + i, fileList[i]);
+    //   }
+    // }
+    const files = await uploadToQiniu('web_job', fileList);
+    // reqData.append('files', files);
+    const reqData = {
+      position_id,
+      job_status,
+      name,
+      contact,
+      email,
+      files,
+    };
     Ajax('POST', `/web/about/job`, reqData, ({ errno, errmsg, data }) => {});
     return false;
   }
