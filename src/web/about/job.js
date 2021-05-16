@@ -33,7 +33,7 @@ $(function () {
       return layer.msg('请输入正确的邮箱地址');
     }
     const reqData = new FormData();
-    reqData.append('position', position_id);
+    reqData.append('position_id', position_id);
     reqData.append('job_status', job_status);
     reqData.append('name', name);
     reqData.append('contact', contact);

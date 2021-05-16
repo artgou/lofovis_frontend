@@ -5,6 +5,7 @@
   set splash = {
   bgColor: '',
   img: '/static/imgs/web/splash_brand.png',
+  times: 10,
   enter: '/home/index.html'
   }
   %}
@@ -20,7 +21,7 @@
   </div>
   <div class="splash-btns">
     <a class="splash-enter" href="{{splash.enter | safe}}">Enter</a>
-    <div class="splash-timer">09S</div>
+    <div class="splash-timer" data-times="{{splash.times}}" data-link="{{splash.enter | safe}}">{{splash.times}}S</div>
   </div>
 </div>
 {% endblock %}

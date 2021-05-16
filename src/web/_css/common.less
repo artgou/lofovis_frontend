@@ -43,6 +43,7 @@ test {
 .page {
   margin: 0 auto;
   max-width: @_respWidth;
+  overflow: hidden;
 
   &-offset-yes {
     transform: translate(-140px);
@@ -231,8 +232,8 @@ a.link {
     position: fixed;
     top: 120px;
     bottom: 0;
-    right: 10px;
-    padding: 0 25px;
+    right: 0;
+    padding: 0 30px;
     background-color: fade(#fff, 80);
 
     .icon {
@@ -493,6 +494,13 @@ a.link {
   font-size: 30px;
   line-height: 2;
   margin: 50px auto;
+}
+
+.list-empty {
+  font-weight: 500;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 24px;
 }
 
 // 文章
