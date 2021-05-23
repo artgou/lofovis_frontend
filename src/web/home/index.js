@@ -18,15 +18,18 @@ $(function () {
     reqArgs: {},
     reqAjaxFn: Ajax,
     itemRenderFn: (item, index) => item,
-    dataUpdateEndFn: () => {},
+    dataUpdateEndFn: updateBetween,
   });
 
   $('.stats-nums').each(function (dom) {
     rollNumber($(this), {});
   });
 
-  $('.between').each((i, dom) => {
-    const tmp = $(dom);
-    tmp.html(tmp.html().split('').join(' '));
-  });
+  function updateBetween() {
+    $('.between').each((i, dom) => {
+      const tmp = $(dom);
+      tmp.html(tmp.html().split('').join(' '));
+    });
+  }
+  updateBetween();
 });

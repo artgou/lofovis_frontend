@@ -10,12 +10,6 @@
   </div>
   <div class="photo-icon">
     <i class="icon icon-{{'play2' if item.isVideo else 'image'}}"></i>
-  </div>
-  <div class="photo-author">
-    <div class="photo-name">
-      <i class="icon icon-user"></i>
-      <b>{{item.author | safe}}</b>
-    </div>
     <div class="photo-date between">
       {{item.date | safe}}
     </div>
@@ -27,12 +21,6 @@
     <div class="article-info-icon">
       <div class="article-info-cate">
         {{item.category | safe}}
-      </div>
-    </div>
-    <div class="article-info-author">
-      <div class="article-info-name">
-        <i class="icon icon-user"></i>
-        <b>{{item.author | safe}}</b>
       </div>
       <div class="article-info-date between">
         {{item.date | safe}}

@@ -532,6 +532,7 @@ a.link {
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
     font-family: enfont;
 
     &-cate {
@@ -548,10 +549,11 @@ a.link {
       margin-bottom: 15px;
     }
     &-icon {
-      flex: 1;
+      // flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
     }
     &-name {
       display: flex;
@@ -567,11 +569,12 @@ a.link {
       }
     }
     &-date {
-      margin: 0px 0 10px 0;
+      // margin: 0px 0 10px 0;
+      font-family: 'enfont';
       font-size: 28px;
-      padding: 3px 0;
       text-align: justify;
       text-align-last: justify;
+      padding: 20px 5px 0;
     }
   }
 
@@ -587,10 +590,11 @@ a.link {
     }
     &-title {
       position: absolute;
-      left: 20px;
+      right: 35px;
       bottom: 15px;
       color: #fff;
-      font-size: 36px;
+      font-size: 32px;
+      text-align: right;
       .ellipsis(90%);
     }
   }
@@ -614,9 +618,10 @@ a.link {
 
     &-title {
       color: #444;
-      font-size: 35px;
+      font-size: 32px;
       line-height: 2;
       font-weight: bold;
+      text-align: left;
       .ellipsis(95%);
     }
     &-content {
@@ -624,6 +629,7 @@ a.link {
       color: #666;
       font-size: 28px;
       line-height: 1.5;
+      text-align: left;
       .ellipsisLn(4);
     }
   }
@@ -673,51 +679,24 @@ a.link {
   &-icon {
     position: absolute;
     left: 50px;
-    bottom: 140px;
+    bottom: 40px;
     .icon {
-      font-size: 100px;
-    }
-  }
-  &-author {
-    text-align: left;
-    position: absolute;
-    left: 50px;
-    bottom: 30px;
-    font-family: enfont;
-    // width: 160px;
-  }
-  &-name {
-    display: flex;
-    align-items: center;
-    margin-top: -10px;
-    width: 100%;
-
-    .icon {
-      font-size: 35px;
-      padding: 0 5px 10px 0;
-      width: 40px;
-    }
-
-    b {
-      text-align: justify;
-      text-align-last: justify;
-      font-size: 40px;
+      font-size: 130px;
     }
   }
   &-date {
-    margin: 0px 0 10px 0;
-    font-size: 30px;
-    // letter-spacing: -1px;
-    padding-left: 5px;
+    font-family: 'enfont';
+    font-size: 24px;
+    padding: 20px 5px 0 0;
     text-align: justify;
     text-align-last: justify;
   }
   &-title {
     position: absolute;
-    right: 25px;
+    right: 35px;
     bottom: 40px;
     color: #fff;
-    font-size: 36px;
+    font-size: 32px;
     text-align: right;
     .ellipsis(60%);
   }

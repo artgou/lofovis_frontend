@@ -35,13 +35,16 @@
     font-family: enfont;
     user-select: none;
     padding: 0 @item_gap - 10px;
-    height: 35px;
     color: #999;
   }
 
   .timebar {
     .flex();
     flex: 1;
+
+    &-total {
+      height: 28px;
+    }
 
     .progress {
       flex: 1;

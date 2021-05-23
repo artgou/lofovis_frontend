@@ -29,15 +29,17 @@
     <h1 class="detail-title">
       {{article.title | safe}}
     </h1>
-    <div class="detail-category">
-      {{article.category | safe}}
-    </div>
+    <ul class="detail-icons">
+      <li><i class="icon icon-view"></i> <b>{{article.views}}</b></li>
+      <li class="btn-fav" data-sn="{{article.sn}}"><i class="icon icon-fav"></i> <b>{{article.favs}}</b></li>
+      <li><i class="icon icon-user"></i> <b>{{article.author}}</b></li>
+    </ul>
     <div class="aplayer">
       <audio src="{{article.audio | safe}}" controls autoplay="autoplay" style="display: none;">
         当前浏览器不支持直接播放音频
       </audio>
       <div class="play-pause icon icon-play"></div>
-      <span class="timbar-text">配乐</span>
+      <span class="timbar-text">音乐</span>
       <div class="timebar">
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
@@ -55,11 +57,7 @@
     </div>
     {% endif %}
 
-    <ul class="detail-icons">
-      <li><i class="icon icon-view"></i> <b>{{article.views}}</b></li>
-      <li class="btn-fav" data-sn="{{article.sn}}"><i class="icon icon-fav"></i> <b>{{article.favs}}</b></li>
-      <li><i class="icon icon-user"></i> <b>{{article.author}}</b></li>
-    </ul>
+
   </div>
 </div>
 {% endblock %}
