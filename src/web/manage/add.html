@@ -18,7 +18,7 @@
   {label: 'AAAA', value: 1},
   {label: 'BBBB', value: 2}
   ]},
-  { name: 'files', type: 'upload', label: '上传：<i>图片或视频（视频1个，图片6张）</i>'},
+  { name: 'files', type: 'upload', accept: 'image/*,video/*', label: '上传：<i>图片或视频（视频1个，图片6张）</i>', max: 6 },
   { name: 'title', type: 'text', label: '文章标题', required: true},
   { name: 'content', type: 'textarea', label: '正文内容（选填）'}
 

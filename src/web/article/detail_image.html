@@ -88,9 +88,8 @@
         <div class="vplayer">
           <div class="vplayer-content">
             <div class="vplayer-content-bg" style="background-image: url('{{article.video_bg | safe}}')"></div>
-            <video class="video" title="{{article.title}}" muted="true" autoplay playsinline webkit-playsinline
-              x5-video-player-type="h5" x5-video-orientation="landscape" controlslist="nodownload"
-              disablePictureInPicture>
+            <video class="video" title="{{article.title}}" playsinline webkit-playsinline x5-video-player-type="h5"
+              x5-video-orientation="landscape" controlslist="nodownload" disablePictureInPicture>
               <source src="{{article.video | safe}}" type="video/mp4">
               </source>
               当前浏览器不支持直接播放视频
@@ -135,7 +134,7 @@
                 <i class="icon icon-view"></i>
                 <b>{{article.views}}</b>
               </li>
-              <li class="events btn-fav">
+              <li class="events btn-fav" data-sn="{{article.sn}}">
                 <i class="icon icon-fav"></i>
                 <b>{{article.favs}}</b>
               </li>

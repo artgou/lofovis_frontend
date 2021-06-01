@@ -53,6 +53,42 @@ $(function () {
     //   reqData.append('file_' + i, fileList[i]);
     // }
     // reqData.append('files', files);
+
+    // 判断视频比例
+    function checkVideoStyle(fileList) {
+      return new Promise((resolve, reject) => {
+        var file = fileList ? fileList[0] : null;
+        if (file && !/\.(mp4|avi)$/.test(file.name)) {
+          return resolve(0);
+        }
+        try {
+          var reader = new FileReader();
+          reader.addEventListener(
+            'load',
+            function () {
+              var dataUrl = reader.result;
+              var videoId = 'tempVideo';
+              var $videoEl = $('<video id="' + videoId + '" style="display: none;"></video>');
+              $('body').append($videoEl);
+              $videoEl.attr('src', dataUrl);
+              var videoTagRef = $videoEl[0];
+              videoTagRef.addEventListener('loadedmetadata', function (e) {
+                const width = videoTagRef.videoWidth;
+                const height = videoTagRef.videoHeight;
+                $videoEl.remove();
+                resolve(width < height ? 1 : 0);
+              });
+            },
+            false
+          );
+          reader.readAsDataURL(file);
+        } catch (err) {
+          layer.msg(`获取文件信息出错`);
+          reject(err);
+        }
+      });
+    }
+    const video_style = await checkVideoStyle(fileList);
     const files = await uploadToQiniu('web_article', fileList);
     const reqData = {
       type,
@@ -60,6 +96,7 @@ $(function () {
       title,
       content,
       files,
+      video_style,
     };
     Ajax('POST', `/web/manage/add`, reqData, ({ errno, errmsg, data }) => {});
     return false;
