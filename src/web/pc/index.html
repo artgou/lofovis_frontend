@@ -1,0 +1,42 @@
+<test>
+  {% set pcBg = '/static/imgs/web/pc_bg.png' %}
+  {% set pcLogo = '/static/imgs/web/pc_logo.png' %}
+  {% set qrcodeText = '/' %}
+  {% set qrcodeTips = '扫码访问移动端' %}
+</test>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+  <meta name="keywords" content="{{keywords}}">
+  <meta name="description" content="{{description}}">
+  <title>{{title}}</title>
+  {% if ctx %}
+  <meta name="{{ ctx.config('csrf.header_name') }}" content="{{ ctx[ctx.config('csrf.header_name')] }}">
+  {% endif %}
+  <link rel="icon" href="/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"
+    integrity="sha256-xUHvBjJ4hahBW8qN9gceFBibSFUzbe9PNttUvehITzY=" crossorigin="anonymous"></script>
+  {{headerHTML | safe}}
+</head>
+
+<body class="pc">
+  <div class="pc-main">
+    <div class="logo"><img src="/static/imgs/web/pc_logo.png"></div>
+    <div class="qrcode">
+      <div class="qrcode-img" id="qrcode" data-value="{{qrcodeText | safe}}"></div>
+      <div class="qrcode-line"></div>
+      <div class="qrcode-tips">{{qrcodeTips | safe}}</div>
+    </div>
+  </div>
+  {{footerHTML | safe}}
+  <div class="hide">{{hideCode | safe}}</div>
+</body>
+
+</html>

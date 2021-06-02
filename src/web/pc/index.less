@@ -1,0 +1,50 @@
+.pc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/static/imgs/web/pc_bg.png'); // left top #fff no-repeat;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10vh;
+    height: 100vh;
+  }
+
+  .logo {
+    img {
+      height: 130px;
+    }
+  }
+  .qrcode {
+    margin-left: 60px;
+    padding-left: 10px;
+    position: relative;
+
+    img {
+      background-color: #fff;
+      padding: 10px;
+    }
+
+    &::before {
+      position: absolute;
+      content: ' ';
+      left: -10px;
+      width: 3px;
+      background-color: #333;
+      top: 0;
+      bottom: 20px;
+    }
+
+    &-tips {
+      margin-top: 0px;
+      font-size: 14px;
+      text-align: center;
+      color: #666;
+    }
+  }
+}

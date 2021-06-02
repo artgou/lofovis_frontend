@@ -7,6 +7,7 @@ const FLEXIBLE_OPTIONS = {
   size: 750, // 美术页面宽度(px)
   remUnit: 75, // 1rem === ?px 网页根元素的字体大小
   ignore: [new RegExp('m1.*')], // 忽略页面，支持正则和字串 ['prod-detail.html', /prod-.*/]
+  // ignore: [new RegExp('m1.*'), new RegExp('pc/index.html')], // 忽略页面，支持正则和字串 ['prod-detail.html', /prod-.*/]
   flexibleJSUrl: '/static/libs/flexible.js', // flexible.js文件(也可以用别的文件把flexible.js包起来)
 };
 // FTP参数
