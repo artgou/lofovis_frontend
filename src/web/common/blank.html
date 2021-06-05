@@ -1,5 +1,7 @@
 {% extends "./base.html" %}
 
 {% block pageBody %}
-{{ body | safe }}
+<div class="content {{'always-menu' if hasNavbar else ''}}">
+  {{ body | safe }}
+</div>
 {% endblock %}
