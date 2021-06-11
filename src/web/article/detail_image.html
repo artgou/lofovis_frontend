@@ -16,7 +16,7 @@
   favs: 25,
   author: 'Fengbox',
   video: 'http://www.jplayer.org/video/m4v/Incredibles_Teaser.m4v',
-  video_bg: '/static/imgs/web/stats.png2',
+  video_cover: '/static/imgs/web/stats.png2',
   audio: 'https://www.jq22.com/demo/jqueryaudio201903252328/jq22.mp3',
   photoList: [
   '/static/imgs/web/0/photo.jpg',
@@ -87,9 +87,9 @@
         <!-- 视频 -->
         <div class="vplayer">
           <div class="vplayer-content">
-            <div class="vplayer-content-bg" style="background-image: url('{{article.video_bg | safe}}')"></div>
-            <video class="video" title="{{article.title}}" playsinline webkit-playsinline x5-video-player-type="h5"
-              x5-video-orientation="landscape" controlslist="nodownload" disablePictureInPicture>
+            <video class="video" title="{{article.title}}" poster="{{article.video_cover | safe}}" preload="auto"
+              playsinline webkit-playsinline x5-video-player-type="h5" x5-video-orientation="landscape"
+              controlslist="nodownload" disablePictureInPicture>
               <source src="{{article.video | safe}}" type="video/mp4">
               </source>
               当前浏览器不支持直接播放视频
